@@ -1,9 +1,9 @@
-function App() {
-    return (
-            <div>
-            asdasd
-            </div>
-            );
-}
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import App from './App.jsx';
 
-export default App;
+
+ReactDOM.render(
+        <Fragment> <App/> </Fragment>,
+        document.getElementById('root')
+        );
