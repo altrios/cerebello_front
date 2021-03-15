@@ -1,5 +1,5 @@
 import React from "react";
-import Lista from "./Lista";
+import Lists from "../Lists";
 import { Divider, Drawer, makeStyles } from "@material-ui/core";
 
 const estilos = makeStyles((theme) => ({
@@ -15,7 +15,7 @@ const estilos = makeStyles((theme) => ({
   drawerPaper: {
     width: 240,
   },
-}));
+}));  
 
 export const Caja = (props) => {
   const classes = estilos();
@@ -32,7 +32,7 @@ export const Caja = (props) => {
     >
       <div className={classes.toolbar}></div>
       <Divider />
-      <Lista />
+      <Lists />
     </Drawer>
   );
 };
