@@ -67,7 +67,7 @@ export const Lists = () => {
 
                     </List>
                 </div>
-                <hr />
+                
 
             </div>
         

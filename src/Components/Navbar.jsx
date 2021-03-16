@@ -35,7 +35,7 @@ export const Navbar = (props) => {
   return (
     <div>
       <AppBar className={classes.appBar}>
-        <Toolbar color="main">
+        <Toolbar color="nav">
           <IconButton aria-label="menu" className={classes.menuButton} onClick={()=>props.accionAbrir()}>
             <MenuIcon />
           </IconButton>

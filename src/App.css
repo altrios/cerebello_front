@@ -2,13 +2,14 @@
   text-align: center;
 }
 
-nav{
+.nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 10hv;
-  background: rgb(48, 73, 212);
-  color: white;
+  background: rgb(255, 255, 255);
+  color: rgb(139, 139, 139);
+  box-shadow: none;
 }
 
 .nav-link{
@@ -17,4 +18,18 @@ nav{
   justify-content: space-around;
   align-items: center;
   list-style:none;
+}
+.button-login{
+      text-decoration: none;
+      text-decoration: underline;
+      color: rgb(139, 139, 139);
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+}
+header{
+  box-shadow: none !important;
+}
+.logo-desk{
+  max-height: 64px;
 }

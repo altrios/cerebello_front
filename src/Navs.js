@@ -43,7 +43,7 @@ export const Navs = (props) => {
     return (
         <div>
       <AppBar className={classes.appBar}>
-        <Toolbar color="main">
+        <Toolbar className="nav">
           <IconButton aria-label="menu" className={classes.menuButton} onClick={()=>props.accionAbrir()}>
             <MenuIcon />
           </IconButton>
@@ -51,7 +51,7 @@ export const Navs = (props) => {
             toolbar
           </Typography>
           
-          <Link to="/shop">
+          <Link className="button-login" to="/shop">
           <Button color="inherit">Login</Button>
           </Link>
           

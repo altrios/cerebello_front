@@ -2,6 +2,8 @@ import Navs from './Navs';
 import Caja from './Components/Caja';
 import About from './Components/About';
 import Shop from './Components/Shop';
+import {ThemeProvider} from '@material-ui/styles'
+import theme from './themeconfig'
 import './App.css';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import { Box, Hidden, makeStyles } from "@material-ui/core";
@@ -29,6 +31,8 @@ function App() {
 
   }
   return (
+    <ThemeProvider theme={theme}>
+     
     <Router>
       <div className="App">
         <Navs accionAbrir={accionAbrir}/>
@@ -54,12 +58,19 @@ function App() {
         
       </div>
     </Router>
-
+    </ThemeProvider>
   );
 }
 const Home =()=>(
   <div>
     <h1>Home</h1>
+    <h1>Home</h1><br></br>
+    <h1>Home</h1><br></br>
+    <h1>Home</h1><br></br>
+    <h1>Home</h1><br></br>
+    <h1>Home</h1><br></br>
+    <h1>Home</h1><br></br>
+    <h1>Home</h1><br></br>
   </div>
 );
 
