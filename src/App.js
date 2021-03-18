@@ -2,6 +2,7 @@ import Navs from './Navs';
 import Caja from './Components/Caja';
 import About from './Components/About';
 import Shop from './Components/Shop';
+import Home from './Components/Home';
 import {ThemeProvider} from '@material-ui/styles'
 import theme from './themeconfig'
 import './App.css';
@@ -61,17 +62,6 @@ function App() {
     </ThemeProvider>
   );
 }
-const Home =()=>(
-  <div>
-    <h1>Home</h1>
-    <h1>Home</h1><br></br>
-    <h1>Home</h1><br></br>
-    <h1>Home</h1><br></br>
-    <h1>Home</h1><br></br>
-    <h1>Home</h1><br></br>
-    <h1>Home</h1><br></br>
-    <h1>Home</h1><br></br>
-  </div>
-);
+
 
 export default App;
