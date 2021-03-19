@@ -1,65 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { ThemeProvider } from "@material-ui/styles";
+
 import MenuIcon from "@material-ui/icons/Menu";
 import {
-    AppBar,
-    Icon,
-    IconButton,
-    Typography,
-    Toolbar,
-    makeStyles,
+  AppBar,
+  
+  IconButton,
+  Typography,
+  Toolbar,
+  makeStyles,
+  Modal, TextField
 } from "@material-ui/core";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    NavLink,
-    Link,
-} from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
-    offset: theme.mixins.toolbar,
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
-        },
+  offset: theme.mixins.toolbar,
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     },
-    title: {
-        flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  appBar: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${240}px)`,
+      marginLeft: 240,
     },
-    appBar: {
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${240}px)`,
-            marginLeft: 240,
-        },
-    },
+
+  },
+  modal:{
+    position:'absolute',
+    with:400,
+    background: 'white',
+    border:'2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2,4,3),
+    top:'50%',
+    left:'50%',
+    transform: 'translate(-50%, -50%)'
+
+},
+textfield:{
+    width:'100%'
+}
 }));
 
 export const Navs = (props) => {
-    const classes = useStyles();
-    return (
-        <div>
+  const classes = useStyles();
+  const [modal, setModal] = useState(false);
+  const openModal = () => {
+    setModal(!modal);
+  }
+  const body = (
+    <div className={classes.modal}>
+      <div align="center">
+        <h2>Login</h2>
+      </div>
+      <TextField label="Correo" className={classes.textfield} />
+      <br />
+      <TextField label="Contraseña" className={classes.textfield} />
+      <br />
+      <div>
+        <Button color="primary">Enviar</Button>
+        <Button onClick={() => openModal()}> Cancelar</Button>
+      </div>
+
+    </div>
+  )
+  return (
+    <div>
       <AppBar className={classes.appBar}>
         <Toolbar className="nav">
-          <IconButton aria-label="menu" className={classes.menuButton} onClick={()=>props.accionAbrir()}>
+          <IconButton aria-label="menu" className={classes.menuButton} onClick={() => props.accionAbrir()}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="initial" className={classes.title}>
             toolbar
           </Typography>
-          
-          <Link className="button-login" to="/shop">
-          <Button color="inherit">Login</Button>
-          </Link>
-          
+
+
+          <Button color="inherit" onClick={() => openModal()}>Login</Button>
+          <Modal
+            open={modal}
+            onClose={openModal}>
+            {body}
+
+          </Modal>
+
         </Toolbar>
       </AppBar>
       <div className={classes.offset}></div>
     </div>
-    );
+  );
 }
 
 export default Navs;

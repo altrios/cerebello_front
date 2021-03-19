@@ -1,14 +1,11 @@
-import { Box, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { CloudQueue } from '@material-ui/icons'
 import React from 'react'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     NavLink,
     Link
 } from "react-router-dom";
-
+ 
 export const Lists = () => {
     return (
         
@@ -26,7 +23,7 @@ export const Lists = () => {
                             </ListItemIcon>
                             <ListItemText to="/"
                                 exact
-                                className="btn btn-dark"
+                                className="btn btn-dark button-menu-lateral"
                                 activeClassName="active"
                                 primary="Inicio" />
 
@@ -37,14 +34,14 @@ export const Lists = () => {
                             exact
 
                         >
-                            <ListItem button>
+                            <ListItem button >
 
                                 <ListItemIcon>
                                     <CloudQueue />
                                 </ListItemIcon>
                                 <ListItemText to="/shop"
                                     exact
-                                    className="btn btn-dark"
+                                    className="btn btn-dark button-menu-lateral"
                                     activeClassName="active"
                                     primary="Clases" />
 
@@ -58,7 +55,7 @@ export const Lists = () => {
                             </ListItemIcon>
                             <ListItemText to="/events"
                                 exact
-                                className="btn btn-dark"
+                                className="btn btn-dark button-menu-lateral"
                                 activeClassName="active"
                                 primary="Eventos" />
                         </ListItem>
@@ -67,7 +64,7 @@ export const Lists = () => {
 
                     </List>
                 </div>
-                
+           
 
             </div>
         

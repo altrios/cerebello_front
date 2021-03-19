@@ -2,7 +2,7 @@ import React from "react";
 import Lists from "../Lists";
 import { ReactComponent as Logo } from '../logo.svg';
 
-import { Divider, Drawer, makeStyles } from "@material-ui/core";
+import { Drawer, makeStyles } from "@material-ui/core";
 
 const estilos = makeStyles((theme) => ({
   root: {

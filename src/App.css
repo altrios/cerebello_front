@@ -33,6 +33,16 @@
       text-decoration: none;
       display: inline-block;
 }
+.button-menu-lateral{
+  text-decoration: none;
+  color: rgb(139, 139, 139);
+  text-decoration:none;
+  text-decoration: none;
+  display: inline-block;
+}
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
 header{
   box-shadow: none !important;
 }
