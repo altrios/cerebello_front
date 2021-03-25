@@ -1,16 +1,35 @@
 import React from "react";
 import Banner from "./Banner";
+import Activities from "./Activities";
+import { makeStyles, Box, Grid } from "@material-ui/core";
 
 
-function Home() {
-    return (
-      <div className="App">
-          
-        <Banner/>
-      </div>
-    );
+
+const useStyles = makeStyles(() => ({
+  Container: {
+    width: '100%',
+    padding: '5px'
   }
 
-  
-  export default Home;
-  
+}));
+
+function Home() {
+  const classes = useStyles();
+  return (
+    <div className="App">
+      <Grid container className={classes.Container}>
+        <Grid container  xs={12}>
+
+          <Banner />
+        </Grid>
+
+        <Grid container  xs={12}><Activities /></Grid>
+      </Grid>
+
+
+    </div>
+  );
+}
+
+
+export default Home;
