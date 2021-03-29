@@ -24,7 +24,7 @@ export const Lists = () => {
                             <ListItemText to="/"
                                 exact
                                 className="btn btn-dark button-menu-lateral"
-                                activeClassName="active"
+                                
                                 primary="Inicio" />
 
                         </ListItem>
@@ -42,7 +42,7 @@ export const Lists = () => {
                                 <ListItemText to="/shop"
                                     exact
                                     className="btn btn-dark button-menu-lateral"
-                                    activeClassName="active"
+                                    
                                     primary="Clases" />
 
 
@@ -56,7 +56,7 @@ export const Lists = () => {
                             <ListItemText to="/events"
                                 exact
                                 className="btn btn-dark button-menu-lateral"
-                                activeClassName="active"
+                                
                                 primary="Eventos" />
                         </ListItem>
 

@@ -61,10 +61,10 @@ export const Navs = (props) => {
       </div>
       <TextField label="Correo" className={classes.textfield} />
       <br />
-      <TextField label="Contraseña" className={classes.textfield} />
+      <TextField type="password" label="Contraseña" className={classes.textfield} />
       <br />
       <div>
-        <Button color="primary">Enviar</Button>
+        <Button color="primary" type="submit">Enviar</Button>
         <Button onClick={() => openModal()}> Cancelar</Button>
       </div>
 
