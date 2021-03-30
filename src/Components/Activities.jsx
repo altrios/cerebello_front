@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, Grid, makeStyles } from "@material-ui/core";
-import { Backdrop } from '@material-ui/core';
-import { Borders } from "@material-ui/system";
 import Activitie from '../Img/Activities/thumnail-Fondo-1.png';
 import { Link } from "react-router-dom";
 
@@ -78,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
 function Activities() {
     const classes = useStyles();
     return (
-        <div className="MuiGrid-grid-xs-12">
+        <div className="MuiGrid-grid-xs-12 App">
             <div className="classes.Title" >
                 <h3>Cronograma de Actividades</h3>
             </div>

@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function Home() {
+  localStorage.removeItem('Activity');
   const classes = useStyles();
   return (
     <div className="App">

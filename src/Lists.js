@@ -5,18 +5,18 @@ import {
     NavLink,
     Link
 } from "react-router-dom";
- 
+
 export const Lists = () => {
     return (
-        
-            <div className="container">
-                <div className="btn-group">
-                    <List componet='nav'>
-                    <Link
-                            to="/"
-                            exact
 
-                        >
+        <div className="container">
+            <div className="btn-group">
+                <List componet='nav'>
+                    <Link
+                        to="/"
+                        exact
+
+                    >
                         <ListItem button>
                             <ListItemIcon>
                                 <CloudQueue />
@@ -24,50 +24,50 @@ export const Lists = () => {
                             <ListItemText to="/"
                                 exact
                                 className="btn btn-dark button-menu-lateral"
-                                
+
                                 primary="Inicio" />
 
                         </ListItem>
-                        </Link>
-                        <NavLink
-                            to="/shop"
-                            exact
+                    </Link>
+                    <NavLink
+                        to="/activitypage"
+                        exact
 
-                        >
-                            <ListItem button >
+                    >
+                        <ListItem button >
 
-                                <ListItemIcon>
-                                    <CloudQueue />
-                                </ListItemIcon>
-                                <ListItemText to="/shop"
-                                    exact
-                                    className="btn btn-dark button-menu-lateral"
-                                    
-                                    primary="Clases" />
-
-
-
-                            </ListItem>
-                        </NavLink>
-                        <ListItem button>
                             <ListItemIcon>
                                 <CloudQueue />
                             </ListItemIcon>
-                            <ListItemText to="/events"
+                            <ListItemText to="/activitypage"
                                 exact
                                 className="btn btn-dark button-menu-lateral"
-                                
-                                primary="Eventos" />
+
+                                primary="Clases" />
+
+
+
                         </ListItem>
+                    </NavLink>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <CloudQueue />
+                        </ListItemIcon>
+                        <ListItemText to="/events"
+                            exact
+                            className="btn btn-dark button-menu-lateral"
+
+                            primary="Eventos" />
+                    </ListItem>
 
 
 
-                    </List>
-                </div>
-           
-
+                </List>
             </div>
-        
+
+
+        </div>
+
     )
 }
 export default Lists;

@@ -1,31 +1,37 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 
 
 export const Activity = (props) => {
+    const NoAuth = "Acceso no autorizado";
 
-    const prueba = [{ algo: props.location.Activity }];
-    const [activity, setActivity]  = useState(
-        window.localStorage.getItem('valor')
-    )
-    const setLocalStorage= value=>{
-        try{
-            setActivity(prueba[0].algo)
-            window.localStorage.setItem('valor', prueba[0].algo.activityProps);
-        }catch (error){
-            console.error(error)
+    if (localStorage.getItem('Activity') != '' && localStorage.getItem('Activity') != { NoAuth } && localStorage.getItem('Activity') != null) {
+        if (props.location.Activity) {
+            localStorage.removeItem('Activity');
+            const prop = [{ algo: props.location.Activity }];
+            let activity = prop[0].algo.activityProps;
+            localStorage.setItem('Activity', prop[0].algo.activityProps);
         }
+        console.log("si");
+    } else {
+        console.log("no");
+        localStorage.setItem('Activity', NoAuth);
     }
+    console.log(localStorage.getItem('Activity'))
 
-    localStorage.setItem('myData', prueba[0].algo.activityProps);
 
-    console.log(window.localStorage.getItem('valor'))
-    
+
+
+
+
+
+
+
 
     return (
         <Fragment>
             <div className="App">
 
-               <h1>{prueba[0].algo.activityProps}</h1>
+                <h1>{window.localStorage.getItem('Activity')}</h1>
             </div>
         </Fragment>
 
