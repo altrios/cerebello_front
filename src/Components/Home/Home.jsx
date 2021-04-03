@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from "./Banner";
-import Activities from "./Activities";
+import Courses from "./Courses";
 import { makeStyles,   Grid } from "@material-ui/core";
 
 
@@ -24,7 +24,7 @@ function Home() {
           <Banner />
         </Grid>
 
-        <Grid container  xs={12}><Activities /></Grid>
+        <Grid container  xs={12}><Courses /></Grid>
       </Grid>
 
 

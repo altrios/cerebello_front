@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Grid, makeStyles } from "@material-ui/core";
-import Activitie from '../Img/Activities/thumnail-Fondo-1.png';
+import { Box, Grid, makeStyles, ListItem } from "@material-ui/core";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Link } from "react-router-dom";
 
 const activities = [{
@@ -43,41 +43,43 @@ const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
         padding: '10px',
-
+    },
+    Title: {
+        textAlign: 'center',
+        padding: '10px',
     },
     activity_box: {
-        backgroundImage: `url(${Activitie})`,
-
-        color: 'black',
+        color: 'black'
     },
     activity_grid: {
         [theme.breakpoints.down('sm')]: {
             display: 'block',
-
-
         },
-
     },
     activity_block: {
-
-
+        color: 'black',
         [theme.breakpoints.up('sm')]: {
             width: '100%',
-
-
         },
         [theme.breakpoints.up('xl')]: {
             width: '33%'
         },
+    },
+    link_style: {
+        color: "snow",
+    },
+    arrowIcon:{
+        height: '2em',
+        fontSize:'2.5rem'
     }
 
 }));
 
-function Activities() {
+function Courses() {
     const classes = useStyles();
     return (
-        <div className="MuiGrid-grid-xs-12 App">
-            <div className="classes.Title" >
+        <div className="MuiGrid-grid-xs-12 ">
+            <div className={classes.Title} >
                 <h3>Cronograma de Actividades</h3>
             </div>
 
@@ -92,19 +94,31 @@ function Activities() {
 
                                         <Grid xs={10} >
                                             <Link to={{
-                                                pathname: '/activity',
+                                                pathname: '/course',
                                                 Activity: {
                                                     activityProps: data.attributes.name
 
                                                 }
-                                            }}>
-                                                <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box}
+                                            }
+                                            } className={classes.link_style} >
+                                                
+                                                <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
                                                     boxShadow={3}
                                                     borderColor="grey.500"
                                                     width='100%'
                                                 >
-                                                    <h2>{data.attributes.name}</h2>
-                                                    <span>{data.attributes.description}</span>
+                                                    <Grid container xs={9} className={classes.activity_grid}>
+                                                        <Box>
+                                                            <h2>{data.attributes.name}</h2>
+                                                            <span>{data.attributes.description}</span>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid container xs={2} className={classes.activity_grid}>
+                                                        <Box>
+                                                            <ArrowForwardIosIcon className={classes.arrowIcon} />
+                                                        </Box>
+                                                    </Grid>
+
                                                 </Box>
                                             </Link>
                                         </Grid>
@@ -121,4 +135,4 @@ function Activities() {
     );
 }
 
-export default Activities;
+export default Courses;

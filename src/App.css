@@ -17,7 +17,7 @@
   min-height: 10hv;
   background: rgb(255, 255, 255);
   color: rgb(139, 139, 139);
-  box-shadow: none;
+  
 }
 
 .nav-link{
@@ -45,9 +45,16 @@
 a:link, a:visited, a:active {
   text-decoration:none;
 }
-header{
-  box-shadow: none !important;
+.classRoom{
+  background-color: #23d9b7;
+  display: inline-flex;
+  padding: 5px!important;
+  
 }
+.classRoomButon{
+  color:'#23d9b7';
+}
+
 .logo-desk{
   max-height: 64px;
 }

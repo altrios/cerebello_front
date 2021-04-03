@@ -1,15 +1,16 @@
 import Navs from './Navs';
-import Caja from './Components/Caja.jsx';
-import About from './Components/About.jsx';
-import Home from './Components/Home.jsx';
+import Caja from './Components/Caja';
+
+import Home from './Components/Home/Home.jsx';
 import { ThemeProvider } from '@material-ui/styles'
 import theme from './themeconfig'
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Hidden } from "@material-ui/core";
 import React from 'react'
-import { Activity } from './Components/Activity';
-import  ActivityPage  from './Components/ActivityPage';
+import  Courses  from './Components/Home/Courses';
+import  Course  from './Components/Classes/Course';
+import  ActivityPage  from './Components/Classes/ActivityPage.jsx';
 
 
 
@@ -43,8 +44,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/activitypage" exact component={ActivityPage} />
-            <Route path="/about" exact component={About} />
-            <Route path="/activity" exact component={Activity} />
+            <Route path="/Course" exact component={Course} />
+            <Route path="/Courses" exact component={Courses} />
           </Switch>
 
         </div>

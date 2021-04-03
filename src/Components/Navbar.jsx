@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import {Button,Divider} from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { ThemeProvider } from "@material-ui/styles";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -10,6 +10,7 @@ import {
   Typography,
   Toolbar,
   makeStyles,
+  Divider,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +48,7 @@ export const Navbar = (props) => {
         </Toolbar>
       </AppBar>
       <div className={classes.offset}></div>
+      <Divider/>
     </div>
   );
 };

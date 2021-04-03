@@ -4,8 +4,8 @@ export default styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px;
-  width: 900;
+  height: 350px;
+  width: 1200;
  
   color: #fff;
   margin: 0 15px;

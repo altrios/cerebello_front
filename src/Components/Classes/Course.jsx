@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 
-export const Activity = (props) => {
+export const Course = (props) => {
     const NoAuth = "Acceso no autorizado";
 
     if (localStorage.getItem('Activity') != '' && localStorage.getItem('Activity') != { NoAuth } && localStorage.getItem('Activity') != null) {
@@ -37,3 +37,5 @@ export const Activity = (props) => {
 
     )
 }
+export default Course;
+
