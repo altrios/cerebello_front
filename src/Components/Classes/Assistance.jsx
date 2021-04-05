@@ -34,8 +34,6 @@ const Assistance = () => {
         setSelectedDate(date);
     };
     return (
-
-
         <div className="Assistance">
             <List componet='nav'>
                 <ListItem >
@@ -51,9 +49,7 @@ const Assistance = () => {
                 </ListItem>
                 <ListItem button>
                     <Grid xs={12} >
-
-
-                        <Box 
+                        <Box
                         >
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
@@ -70,27 +66,19 @@ const Assistance = () => {
                                     }}
                                 />
                             </MuiPickersUtilsProvider>
-
                         </Box>
-
                     </Grid>
                     <div container className={classes.content} >
-
                         <Grid>
                             <Box>
-
-
                                 <Link  >
                                     <Button  >
                                         <ListItemIcon>
                                             <CloudQueue />
                                         </ListItemIcon>
                                         <b>Mi Clase</b></Button></Link>
-
                             </Box>
-
                         </Grid>
-
                     </div>
                 </ListItem>
             </List>
