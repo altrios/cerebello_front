@@ -7,7 +7,18 @@
   justify-content: center;
   height: auto;
   width: 100%;
-  padding: 25px 5px 5px 10px;
+  padding: 35px 10px 5px 10px;
+}
+.Assistance{
+  text-align: center;
+  font-family: sans-serif;
+  display: inline-flex;
+  left: 20%;
+  right: 20%;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  padding: 55px;
 }
 
 .nav{

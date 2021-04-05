@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
-    width: '100%'
+    width: '100%',
   },
   activity_block: {
 
@@ -133,14 +133,7 @@ function ActivityPage() {
                         <Grid container xs={12} className={classes.activity_grid}>
 
                           <Box xs={12} className={classes.class_buton}>
-                            <Link to={{
-                              pathname: '/assistance',
-                              Activity: {
-                                activityProps: data.attributes.name
-
-                              }
-                            }
-                            } s>
+                            <Link  >
                               <Button xs={12} className="classRoomButon" className={classes.style_buton} color="white" >
                                 <ListItemIcon>
                                   <CloudQueue />
@@ -150,7 +143,14 @@ function ActivityPage() {
 
 
                           <Box>
-                            <Link>
+                            <Link to={{
+                              pathname: '/assistance',
+                              Activity: {
+                                activityProps: data.attributes.name
+
+                              }
+                            }
+                            }>
                               <Button className={classes.style_buton} color="white">
                                 <ListItemIcon>
                                   <CloudQueue />
