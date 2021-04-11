@@ -43,63 +43,84 @@ const activities = [{
 const useStyles = makeStyles((theme) => ({
   text: {
     textAlign: 'left',
-    padding: '10px',
+    padding: '0',
+    margin: '0',
 
   },
   activity_box: {
-
     color: 'black',
   },
   activity_grid: {
-    padding: '5px',
+    padding: '0',
     [theme.breakpoints.down('sm')]: {
       display: 'block',
-
-
     },
 
   },
   title: {
     textAlign: 'center',
-    padding: '10px',
-    width: '100%',
+    fontSize:'1.5rem',
+    padding: '5px',
+    color: '#117CC3',
   },
   activity_block: {
-
     [theme.breakpoints.up('sm')]: {
-      width: '100%',
+      width: '95%',
+
     },
     [theme.breakpoints.up('xl')]: {
-      width: '90%'
+      width: '80%'
     },
   },
   link_style: {
     color: "snow",
-    width: '70%'
+    width: '60%',
   },
   arrowIcon: {
     height: '2em',
     fontSize: '2.5rem'
   },
   class_buton: {
-    width: "40%",
+    width: "27%",
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(3),
     },
-
-
   },
   style_buton: {
-    left: '10px',
-    top: ' 30%',
+    left: '5px',
+    top: ' 25%',
     backgroundColor: 'white',
     padding: '10px',
     whiteSpace: 'nowrap',
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(1),
     },
+  },
+  arrowPosition: {
+    display: 'table',
+    position: 'fixed',
+    float: 'right',
+    marginLeft: '25%',
+    my: 'auto',
+},
+  textoOculto: {
+    width: '100%',
+    display: 'block',
+    paddingLeft: '0',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    marginBottom: '2%',
+},
+inlineCourse: {
+  displat: 'flex',
+  flexwrap: 'nowrap',
+},
+coursePosition: {
+  display: 'block',
+  height: '12vh',
 
-  }
+},
 
 }));
 
@@ -110,7 +131,7 @@ function ActivityPage() {
       <Grid container xs={12} className={classes.activity_grid}>
         <Box className={classes.title} >
           <div className={classes.title} >
-            <h3>Cronograma de Actividades</h3>
+            <h3>Mis Cursos</h3>
           </div>
         </Box>
 
@@ -125,20 +146,20 @@ function ActivityPage() {
 
                     <Grid xs={12} >
 
-                      <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
+                      <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
                         boxShadow={3}
                         borderColor="grey.500"
                         width='100%'
                       >
                         <Grid container xs={12} className={classes.activity_grid}>
 
-                          <Box xs={12} className={classes.class_buton}>
+                          <Box xs={18} className={classes.class_buton}>
                             <Link  >
-                              <Button xs={12} className="classRoomButon" className={classes.style_buton} color="white" >
+                              <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" >
                                 <ListItemIcon>
                                   <CloudQueue />
                                 </ListItemIcon>
-                                <b>Mi Clase</b></Button></Link>
+                                <b>Iniciar clase</b></Button></Link>
                           </Box>
 
 
@@ -166,12 +187,12 @@ function ActivityPage() {
 
                           }
                         }} className={classes.link_style} >
-                          <Grid container xs={12} className={classes.activity_grid}>
-                            <Box>
-                              <h2>{data.attributes.name}</h2>
-                              <span>{data.attributes.description}</span>
+                          <Grid container xs={20} className={classes.activity_grid, classes.inlineCourse}>
+                            <Box className={classes.coursePosition}>
+                              <h2  className={classes.textoOculto}>{data.attributes.name}</h2>
+                              <span  className={classes.textoOculto}>{data.attributes.description}</span>
                             </Box>
-                            <Box>
+                            <Box className={classes.arrowPosition}>
                               <ArrowForwardIosIcon className={classes.arrowIcon} />
                             </Box>
                           </Grid>

@@ -40,9 +40,7 @@ export const Navbar = (props) => {
           <IconButton aria-label="menu" className={classes.menuButton} onClick={()=>props.accionAbrir()}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="initial" className={classes.title}>
-            toolbar
-          </Typography>
+          <Typography variant="h6" color="initial" className={classes.title}>Bienvenido</Typography>
 
           <Button color="inherit">Login</Button>
         </Toolbar>

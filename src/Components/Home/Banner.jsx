@@ -28,6 +28,7 @@ let imgUrls = [
 const useStyles = makeStyles(() => ({
   Banner: {
     width: '100%',
+    margintop: '100vh',
     padding: '10px'
   }
 

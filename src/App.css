@@ -1,13 +1,16 @@
+body {
+  position: absolute;
+}
 .App {
   text-align: center;
   font-family: sans-serif;
   display: inline-flex;
-  
   align-items: center;
   justify-content: center;
   height: auto;
   width: 100%;
   padding: 35px 10px 5px 10px;
+  padding-top: 5vh;
 }
 .Assistance{
   text-align: center;
@@ -28,7 +31,6 @@
   min-height: 10hv;
   background: rgb(255, 255, 255);
   color: rgb(139, 139, 139);
-  
 }
 
 .nav-link{
