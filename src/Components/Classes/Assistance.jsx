@@ -29,23 +29,22 @@ const useStyles = makeStyles((theme) => ({
 let userAsistance = [{
     Nombre: 'Fernando',
     Apellido: 'Martínez',
-    Assistance: 'flase'
+    Assistance: 'true'
 },
 {
     Nombre: 'Santi',
     Apellido: 'Artista',
-    Assistance: 'flase'
+    Assistance: 'true'
 }
 ]
 const Assistance = () => {
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
     const [assistance, setAssistance] = useState(false);
-    const [students, setStudents] = useState();
     const classes = useStyles();
     const handleDateChange = (date) => {
         setSelectedDate(date);
         setAssistance(true)
-        console.log(selectedDate)
+        
     };
     return (
         <div className="App">
@@ -57,6 +56,7 @@ const Assistance = () => {
                                 <Box className={classes.title} >
                                     <div className={classes.title} >
                                         <h3>Cronograma de Actividades</h3>
+                                        <h3>Crear Actividad</h3>
                                     </div>
                                 </Box>
                             </div>

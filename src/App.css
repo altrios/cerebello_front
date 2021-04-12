@@ -1,5 +1,5 @@
 body {
-  position: absolute;
+  position: inherit;
 }
 .App {
   text-align: center;
@@ -10,7 +10,7 @@ body {
   height: auto;
   width: 100%;
   padding: 35px 10px 5px 10px;
-  padding-top: 5vh;
+  padding-top: 7vh;
 }
 .Assistance{
   text-align: center;

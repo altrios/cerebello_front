@@ -42,35 +42,24 @@ const activities = [{
 const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
-        width: '100%',
-    },
-    textoOculto: {
-        width: '95%',
-        paddingLeft: '10px',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        marginBottom: '2%',
+        padding: '10px',
     },
     Title: {
-        textAlign: 'left',
-        fontSize:'1.5rem',
-        padding: '5px',
-        color: '#117CC3',
+        textAlign: 'center',
+        padding: '10px',
     },
     activity_box: {
-        color: 'black',
+        color: 'black'
     },
     activity_grid: {
         [theme.breakpoints.down('sm')]: {
             display: 'block',
-            width: '100%',
         },
     },
     activity_block: {
         color: 'black',
         [theme.breakpoints.up('sm')]: {
-            width: '33%',
+            width: '100%',
         },
         [theme.breakpoints.up('xl')]: {
             width: '33%'
@@ -81,15 +70,8 @@ const useStyles = makeStyles((theme) => ({
     },
     arrowIcon:{
         height: '2em',
-        fontSize:'2.5rem',
-    },
-    arrowPosition: {
-        display: 'block',
-        float: 'right',
-        marginLeft: '12%',
-        my: 'auto',
-    },
-
+        fontSize:'2.5rem'
+    }
 
 }));
 
@@ -97,89 +79,41 @@ function Courses() {
     const classes = useStyles();
     return (
         <div className="MuiGrid-grid-xs-12 ">
-            <div className={classes.Title} pl={20}>
-                <h3>Mis Cursos</h3>
+            <div className={classes.Title} >
+                <h3>Cronograma de Actividades</h3>
             </div>
+
             <Grid container xs={12} className={classes.activity_grid}>
                 {
                     activities.map((data, index) => {
                         if (index <= 2) {
-                            return (
+                            return ( 
 
                                 <div className={classes.activity_block}>
                                     <div className={classes.text} >
 
-                                        <Grid xs={11}>
+                                        <Grid xs={10} >
                                             <Link to={{
                                                 pathname: '/course',
                                                 Activity: {
                                                     activityProps: data.attributes.name
+
                                                 }
                                             }
                                             } className={classes.link_style} >
                                                 
-                                                <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
+                                                <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
                                                     boxShadow={3}
                                                     borderColor="grey.500"
                                                     width='100%'
                                                 >
                                                     <Grid container xs={9} className={classes.activity_grid}>
                                                         <Box>
-                                                            <h2 className={classes.textoOculto}>{data.attributes.name}</h2>
-                                                            <span className={classes.textoOculto}>{data.attributes.description}</span>
+                                                            <h2>{data.attributes.name}</h2>
+                                                            <span>{data.attributes.description}</span>
                                                         </Box>
                                                     </Grid>
-                                                    <Grid container xs={1} className={classes.activity_grid, classes.arrowPosition}>
-                                                        <Box>
-                                                            <ArrowForwardIosIcon className={classes.arrowIcon} />
-                                                        </Box>
-                                                    </Grid>
-
-                                                </Box>
-                                            </Link>
-                                        </Grid>
-                                    </div>
-                                </div>
-
-                            )
-                        }
-                    }
-                    )
-                }
-            </Grid>
-            <div className={classes.Title} pl={20}>
-                <h3>Mis Cursos</h3>
-            </div>
-            <Grid container xs={12} className={classes.activity_grid}>
-                {
-                    activities.map((data, index) => {
-                        if (index <= 2) {
-                            return (
-
-                                <div className={classes.activity_block}>
-                                    <div className={classes.text} >
-
-                                        <Grid xs={11}>
-                                            <Link to={{
-                                                pathname: '/course',
-                                                Activity: {
-                                                    activityProps: data.attributes.name
-                                                }
-                                            }
-                                            } className={classes.link_style} >
-                                                
-                                                <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
-                                                    boxShadow={3}
-                                                    borderColor="grey.500"
-                                                    width='100%'
-                                                >
-                                                    <Grid container xs={9} className={classes.activity_grid}>
-                                                        <Box>
-                                                            <h2 className={classes.textoOculto}>{data.attributes.name}</h2>
-                                                            <span className={classes.textoOculto}>{data.attributes.description}</span>
-                                                        </Box>
-                                                    </Grid>
-                                                    <Grid container xs={1} className={classes.activity_grid, classes.arrowPosition}>
+                                                    <Grid container xs={2} className={classes.activity_grid}>
                                                         <Box>
                                                             <ArrowForwardIosIcon className={classes.arrowIcon} />
                                                         </Box>
@@ -198,7 +132,6 @@ function Courses() {
                 }
             </Grid>
         </div >
-        
     );
 }
 
