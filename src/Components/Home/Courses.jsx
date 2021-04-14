@@ -1,7 +1,8 @@
-import React from "react";
-import { Box, Grid, makeStyles, ListItem } from "@material-ui/core";
+import React, { useState } from "react";
+import { Box, Grid, makeStyles, ListItem, Button } from "@material-ui/core";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const activities = [{
     "type": "courses",
@@ -39,6 +40,7 @@ const activities = [{
         "deleted_at": null
     }
 }]
+
 const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
@@ -68,26 +70,52 @@ const useStyles = makeStyles((theme) => ({
     link_style: {
         color: "snow",
     },
-    arrowIcon:{
+    arrowIcon: {
         height: '2em',
-        fontSize:'2.5rem'
+        fontSize: '2.5rem'
     }
 
 }));
 
-function Courses() {
+
+export const Courses = (props) => {
+
+
+    const [courses, setCourses] = useState([]);
+    React.useEffect(() => {
+        console.log("hola")
+        obtenerDatos()
+    }, []);
+
+    const obtenerDatos = async () => {
+        const data = await fetch('http://cerebelloback.echilateral.com/api/v1/courses');
+
+        {/*const data = await fetch('http://cerebelloback.echilateral.com/api/v1/courses') */ }
+        const jsonData = await data.json();
+        let json = [{
+            data: jsonData
+        }]
+        setCourses(jsonData.data)
+        console.log(jsonData.data);
+    }
+
+
+
     const classes = useStyles();
+
     return (
         <div className="MuiGrid-grid-xs-12 ">
             <div className={classes.Title} >
                 <h3>Cronograma de Actividades</h3>
+
             </div>
+
 
             <Grid container xs={12} className={classes.activity_grid}>
                 {
-                    activities.map((data, index) => {
+                    courses.map((data, index) => {
                         if (index <= 2) {
-                            return ( 
+                            return (
 
                                 <div className={classes.activity_block}>
                                     <div className={classes.text} >
@@ -101,7 +129,7 @@ function Courses() {
                                                 }
                                             }
                                             } className={classes.link_style} >
-                                                
+
                                                 <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
                                                     boxShadow={3}
                                                     borderColor="grey.500"

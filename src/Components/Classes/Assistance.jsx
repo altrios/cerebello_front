@@ -6,6 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
+    DatePicker
 } from '@material-ui/pickers';
 import StudentAsistance from './StudentAsistance';
 
@@ -67,8 +68,8 @@ const Assistance = () => {
                             <Box
                             >
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                    <KeyboardDatePicker
-                                        disableToolbar
+                                    <DatePicker
+                                        inputVariant="outlined"
                                         variant="inline"
                                         format="MM/dd/yyyy"
                                         margin="normal"
