@@ -9,13 +9,13 @@ const estilos = makeStyles((theme) => ({
     display: "flex",
   },
   drawer: {
-    width: 240,
+    width: '16%',
     flexShrink: 0,
   },
 
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: 240,
+    width: '16%',
   },
 }));  
 

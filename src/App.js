@@ -13,6 +13,7 @@ import  Course  from './Components/Classes/Course';
 import  ActivityPage  from './Components/Classes/ActivityPage.jsx';
 import  Assistance  from './Components/Classes/Assistance.jsx';
 import  NewClass  from './Components/Classes/NewClass';
+import Perfil from './Components/Perfil/Perfil.jsx';
 
 
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/Courses" exact component={Courses} />
             <Route path="/assistance" exact component={Assistance} />
             <Route path="/newclass" exact component={NewClass} />
+            <Route path="/Perfil" exact component={Perfil} />
           </Switch>
 
         </div>
