@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Grid, makeStyles, Button, ListItemIcon } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import { CloudQueue } from '@material-ui/icons'
+import { ClassRounded, CloudQueue } from '@material-ui/icons'
 
 const activities = [{
   "type": "courses",
@@ -59,8 +59,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     textAlign: 'center',
+    width: '100%',
+    display: 'block',
     fontSize:'1.5rem',
-    padding: '5px',
     color: '#117CC3',
   },
   activity_block: {
@@ -121,6 +122,10 @@ coursePosition: {
   height: '12vh',
 
 },
+centerBox: {
+  display: 'block',
+  marginLeft: '3%',
+},
 
 }));
 
@@ -129,7 +134,7 @@ function ActivityPage() {
   return (
     <div className=" App ">
       <Grid container xs={12} className={classes.activity_grid}>
-        <Box className={classes.title} >
+        <Box className={classes.centerBox}>
           <div className={classes.title} >
             <h3>Mis Cursos</h3>
           </div>
@@ -144,7 +149,7 @@ function ActivityPage() {
                 <div className={classes.activity_block}>
                   <div className={classes.text} >
 
-                    <Grid xs={12} >
+                    <Grid xs={12} className={classes.centerBox}>
 
                       <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
                         boxShadow={3}

@@ -47,8 +47,11 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px',
     },
     Title: {
-        textAlign: 'center',
-        padding: '10px',
+        textAlign: 'left',
+        fontSize:'1.5rem',
+        padding: '5px',
+        marginLeft: '2%',
+        color: '#117CC3',
     },
     activity_box: {
         color: 'black'
@@ -105,8 +108,8 @@ export const Courses = (props) => {
 
     return (
         <div className="MuiGrid-grid-xs-12 ">
-            <div className={classes.Title} >
-                <h3>Cronograma de Actividades</h3>
+            <div className={classes.Title} pl={20}>
+                <h3>Mis Cursos</h3>
 
             </div>
 

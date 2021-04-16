@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     Title: {
         textAlign: 'center',
         padding: '10px',
+        color: '#117CC3',
     },
     activity_box: {
         color: 'black'
