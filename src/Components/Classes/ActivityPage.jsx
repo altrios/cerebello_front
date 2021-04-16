@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Grid, makeStyles, Button, ListItemIcon } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import { ClassRounded, CloudQueue } from '@material-ui/icons'
+import { ClassRounded, CloudQueue, Computer, List } from '@material-ui/icons';
 
 const activities = [{
   "type": "courses",
@@ -126,6 +126,9 @@ centerBox: {
   display: 'block',
   marginLeft: '3%',
 },
+colorVerde: {
+  color: '#23D9B7',
+},
 
 }));
 
@@ -162,9 +165,9 @@ function ActivityPage() {
                             <Link  >
                               <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" >
                                 <ListItemIcon>
-                                  <CloudQueue />
+                                  <Computer style={{color:"#23D9B7"}} />
                                 </ListItemIcon>
-                                <b>Iniciar clase</b></Button></Link>
+                                <b className={classes.colorVerde}>Iniciar clase</b></Button></Link>
                           </Box>
 
 
@@ -179,9 +182,9 @@ function ActivityPage() {
                             }>
                               <Button className={classes.style_buton} color="white">
                                 <ListItemIcon>
-                                  <CloudQueue />
+                                  <List style={{color:"#23D9B7"}}/>
                                 </ListItemIcon>
-                                <b>Asistencia</b></Button></Link>
+                                <b className={classes.colorVerde}>Asistencia</b></Button></Link>
                           </Box>
 
                         </Grid>
