@@ -83,6 +83,8 @@ const useStyles = makeStyles((theme) => ({
   },
   class_buton: {
     width: "27%",
+    marginLeft:'3%',
+    padding:'auto',
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(3),
     },
@@ -111,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    marginBottom: '2%',
+
 },
 inlineCourse: {
   displat: 'flex',
@@ -128,6 +130,15 @@ centerBox: {
 },
 colorVerde: {
   color: '#23D9B7',
+},
+clasesName: {
+  margin: 'auto',
+  display: 'block',
+  marginTop:'7%',
+  
+},
+clasesDescription: {
+  margin: '0',
 },
 
 }));
@@ -197,8 +208,8 @@ function ActivityPage() {
                         }} className={classes.link_style} >
                           <Grid container xs={20} className={classes.activity_grid, classes.inlineCourse}>
                             <Box className={classes.coursePosition}>
-                              <h2  className={classes.textoOculto}>{data.attributes.name}</h2>
-                              <span  className={classes.textoOculto}>{data.attributes.description}</span>
+                              <h2  className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
+                              <span  className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
                             </Box>
                             <Box className={classes.arrowPosition}>
                               <ArrowForwardIosIcon className={classes.arrowIcon} />

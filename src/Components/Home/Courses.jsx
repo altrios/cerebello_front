@@ -107,7 +107,7 @@ export const Courses = (props) => {
     const classes = useStyles();
 
     return (
-        <div className="MuiGrid-grid-xs-12 ">
+        <div className="MuiGrid-grid-xs-12">
             <div className={classes.Title} pl={20}>
                 <h3>Mis Cursos</h3>
 

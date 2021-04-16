@@ -1,5 +1,7 @@
 body {
-  position: inherit;
+  position: absolute;
+  width: 100vw;
+  overflow: hidden;
 }
 .App {
   text-align: center;
@@ -9,7 +11,8 @@ body {
   justify-content: center;
   height: auto;
   width: 100%;
-  padding-top: 7vh;
+  /*padding: 35px 10px 5px 10px;*/
+  padding-top: 5vh;
 }
 .Assistance{
   text-align: center;
@@ -68,5 +71,9 @@ a:link, a:visited, a:active {
 }
 
 .logo-desk{
-  max-height: 60%;
+  max-height: 64px;
+}
+header {
+  position: absolute;
+  z-index: 9;
 }
