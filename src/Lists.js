@@ -1,9 +1,9 @@
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { HomeRounded, Computer, AccountCircle } from '@material-ui/icons'
+import { CloudQueue } from '@material-ui/icons'
 import React from 'react'
 import {
     NavLink,
-    Link,
+    Link
 } from "react-router-dom";
 
 export const Lists = () => {
@@ -19,7 +19,7 @@ export const Lists = () => {
                     >
                         <ListItem button>
                             <ListItemIcon>
-                                <HomeRounded />
+                                <CloudQueue />
                             </ListItemIcon>
                             <ListItemText to="/"
                                 exact
@@ -37,7 +37,7 @@ export const Lists = () => {
                         <ListItem button >
 
                             <ListItemIcon>
-                                <Computer />
+                                <CloudQueue />
                             </ListItemIcon>
                             <ListItemText to="/activitypage"
                                 exact
@@ -49,22 +49,17 @@ export const Lists = () => {
 
                         </ListItem>
                     </NavLink>
-                    <Link 
-                        to="/Perfil"
-                        exact
-                    
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <AccountCircle />
-                            </ListItemIcon>
-                            <ListItemText to="/Perfil"
-                                exact
-                                className="btn btn-dark button-menu-lateral"
+                    <ListItem button>
+                        <ListItemIcon>
+                            <CloudQueue />
+                        </ListItemIcon>
+                        <ListItemText to="/events"
+                            exact
+                            className="btn btn-dark button-menu-lateral"
 
-                                primary="Perfil" />
-                        </ListItem>
-                    </Link>
+                            primary="Eventos" />
+                    </ListItem>
+
 
 
                 </List>

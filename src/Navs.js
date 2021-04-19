@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import {
   AppBar,
+  
   IconButton,
   Typography,
   Toolbar,
@@ -77,7 +78,7 @@ export const Navs = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="initial" className={classes.title}>
-            Bienvenido a LingoCampus
+            toolbar
           </Typography>
 
 
