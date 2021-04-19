@@ -78,7 +78,7 @@ export const Navs = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="initial" className={classes.title}>
-            toolbar
+            Bienvenido a LingoCampus
           </Typography>
 
 

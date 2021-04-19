@@ -1,5 +1,5 @@
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { CloudQueue } from '@material-ui/icons'
+import { AccountCircle, Computer, HomeRounded } from '@material-ui/icons'
 import React from 'react'
 import {
     NavLink,
@@ -19,7 +19,7 @@ export const Lists = () => {
                     >
                         <ListItem button>
                             <ListItemIcon>
-                                <CloudQueue />
+                                <HomeRounded />
                             </ListItemIcon>
                             <ListItemText to="/"
                                 exact
@@ -37,7 +37,7 @@ export const Lists = () => {
                         <ListItem button >
 
                             <ListItemIcon>
-                                <CloudQueue />
+                                <Computer />
                             </ListItemIcon>
                             <ListItemText to="/activitypage"
                                 exact
@@ -49,18 +49,20 @@ export const Lists = () => {
 
                         </ListItem>
                     </NavLink>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <CloudQueue />
-                        </ListItemIcon>
-                        <ListItemText to="/events"
-                            exact
-                            className="btn btn-dark button-menu-lateral"
+                    <Link to="/perfil"
+                        exacr
+                    >
+                        <ListItem button>
+                            <ListItemIcon>
+                                <AccountCircle />
+                            </ListItemIcon>
+                            <ListItemText to="/perfil"
+                                exact
+                                className="btn btn-dark button-menu-lateral"
 
-                            primary="Eventos" />
-                    </ListItem>
-
-
+                                primary="Perfil" />
+                        </ListItem>
+                    </Link>
 
                 </List>
             </div>

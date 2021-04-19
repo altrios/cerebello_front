@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 
   },
   title: {
-    textAlign: 'center',
-    width: '100%',
+    textAlign: 'left',
+    width: '30%',
     display: 'block',
     fontSize:'1.5rem',
     color: '#117CC3',
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     [theme.breakpoints.up('xl')]: {
-      width: '80%'
+      width: '94%',
     },
   },
   link_style: {
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.5rem'
   },
   class_buton: {
-    width: "27%",
+    marginRight: '3%',
     marginLeft:'3%',
     padding:'auto',
     [theme.breakpoints.down('sm')]: {
@@ -94,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
     top: ' 25%',
     backgroundColor: 'white',
     padding: '10px',
+    marginLeft: '0',
     whiteSpace: 'nowrap',
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(1),
@@ -121,11 +122,12 @@ inlineCourse: {
 },
 coursePosition: {
   display: 'block',
-  height: '12vh',
+  height: '9vh',
 
 },
 centerBox: {
   display: 'block',
+  width: '100%',
   marginLeft: '3%',
 },
 colorVerde: {
@@ -172,7 +174,7 @@ function ActivityPage() {
                       >
                         <Grid container xs={12} className={classes.activity_grid}>
 
-                          <Box xs={18} className={classes.class_buton}>
+                          <Box xs={12} className={classes.class_buton}>
                             <Link  >
                               <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" >
                                 <ListItemIcon>
