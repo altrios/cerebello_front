@@ -11,7 +11,7 @@ import {
   makeStyles,
   Modal, TextField
 } from "@material-ui/core";
-
+import { Link, NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
@@ -50,26 +50,7 @@ textfield:{
 
 export const Navs = (props) => {
   const classes = useStyles();
-  const [modal, setModal] = useState(false);
-  const openModal = () => {
-    setModal(!modal);
-  }
-  const body = (
-    <div className={classes.modal}>
-      <div align="center">
-        <h2>Login</h2>
-      </div>
-      <TextField label="Correo" className={classes.textfield} />
-      <br />
-      <TextField type="password" label="Contraseña" className={classes.textfield} />
-      <br />
-      <div>
-        <Button color="primary" type="submit">Enviar</Button>
-        <Button onClick={() => openModal()}> Cancelar</Button>
-      </div>
 
-    </div>
-  )
   return (
     <div>
       <AppBar className={classes.appBar}>
@@ -82,13 +63,14 @@ export const Navs = (props) => {
           </Typography>
 
 
-          <Button color="inherit" onClick={() => openModal()}>Login</Button>
-          <Modal
-            open={modal}
-            onClose={openModal}>
-            {body}
-
-          </Modal>
+          <NavLink
+            to="/login"
+            exact
+            color="inherit"
+          >
+            <Button ><b>Login</b></Button>
+          </NavLink>
+         
 
         </Toolbar>
       </AppBar>

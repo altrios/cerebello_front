@@ -8,12 +8,14 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Hidden } from "@material-ui/core";
 import React from 'react'
-import  Courses  from './Components/Home/Courses';
-import  Course  from './Components/Classes/Course';
-import  ActivityPage  from './Components/Classes/ActivityPage.jsx';
-import  Assistance  from './Components/Classes/Assistance.jsx';
-import  NewClass  from './Components/Classes/NewClass';
-import  Perfil from './Components/Perfil/Perfil';
+import Courses from './Components/Home/Courses';
+import Course from './Components/Classes/Course';
+import ActivityPage from './Components/Classes/ActivityPage.jsx';
+import Assistance from './Components/Classes/Assistance.jsx';
+import NewClass from './Components/Classes/NewClass';
+import Perfil from './Components/Perfil/Perfil';
+import Login from './Components/Login';
+import FileRegister from './FileRegister';
 
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
             />
           </Hidden>
           <Switch>
+            <Route path="/login" exact component={Login} />
+            <Route path="/fileregister" exact component={FileRegister} />
             <Route path="/" exact component={Home} />
             <Route path="/activitypage" exact component={ActivityPage} />
             <Route path="/Course" exact component={Course} />
