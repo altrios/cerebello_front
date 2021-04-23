@@ -3,7 +3,7 @@ import { Box, Grid, makeStyles, Button, ListItemIcon } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { ClassRounded, CloudQueue, Computer, List } from '@material-ui/icons';
-
+import { Redirect } from "react-router-dom";
 const activities = [{
   "type": "courses",
   "id": "1",
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     width: '30%',
     display: 'block',
-    fontSize:'1.5rem',
+    fontSize: '1.5rem',
     color: '#117CC3',
   },
   activity_block: {
@@ -83,8 +83,8 @@ const useStyles = makeStyles((theme) => ({
   },
   class_buton: {
     marginRight: '3%',
-    marginLeft:'3%',
-    padding:'auto',
+    marginLeft: '3%',
+    padding: 'auto',
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(3),
     },
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     marginLeft: '25%',
     my: 'auto',
-},
+  },
   textoOculto: {
     width: '100%',
     display: 'block',
@@ -115,124 +115,129 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
 
-},
-inlineCourse: {
-  displat: 'flex',
-  flexwrap: 'nowrap',
-},
-coursePosition: {
-  display: 'block',
-  height: '9vh',
+  },
+  inlineCourse: {
+    displat: 'flex',
+    flexwrap: 'nowrap',
+  },
+  coursePosition: {
+    display: 'block',
+    height: '9vh',
 
-},
-centerBox: {
-  display: 'block',
-  width: '100%',
-  marginLeft: '3%',
-},
-colorVerde: {
-  color: '#23D9B7',
-},
-clasesName: {
-  margin: 'auto',
-  display: 'block',
-  marginTop:'7%',
-  
-},
-clasesDescription: {
-  margin: '0',
-},
+  },
+  centerBox: {
+    display: 'block',
+    width: '100%',
+    marginLeft: '3%',
+  },
+  colorVerde: {
+    color: '#23D9B7',
+  },
+  clasesName: {
+    margin: 'auto',
+    display: 'block',
+    marginTop: '7%',
+
+  },
+  clasesDescription: {
+    margin: '0',
+  },
 
 }));
 
 function ActivityPage() {
   const classes = useStyles();
-  return (
-    <div className=" App ">
-      <Grid container xs={12} className={classes.activity_grid}>
-        <Box className={classes.centerBox}>
-          <div className={classes.title} >
-            <h3>Mis Cursos</h3>
-          </div>
-        </Box>
+  if (sessionStorage.getItem("token") === null) {
+
+    return <Redirect to='/login' />;
+  } else {
+    return (
+      <div className=" App ">
+        <Grid container xs={12} className={classes.activity_grid}>
+          <Box className={classes.centerBox}>
+            <div className={classes.title} >
+              <h3>Mis Cursos</h3>
+            </div>
+          </Box>
 
 
-        {
-          activities.map((data, index) => {
-            if (index <= 2) {
-              return (
+          {
+            activities.map((data, index) => {
+              if (index <= 2) {
+                return (
 
-                <div className={classes.activity_block}>
-                  <div className={classes.text} >
+                  <div className={classes.activity_block}>
+                    <div className={classes.text} >
 
-                    <Grid xs={12} className={classes.centerBox}>
+                      <Grid xs={12} className={classes.centerBox}>
 
-                      <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
-                        boxShadow={3}
-                        borderColor="grey.500"
-                        width='100%'
-                      >
-                        <Grid container xs={12} className={classes.activity_grid}>
+                        <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
+                          boxShadow={3}
+                          borderColor="grey.500"
+                          width='100%'
+                        >
+                          <Grid container xs={12} className={classes.activity_grid}>
 
-                          <Box xs={12} className={classes.class_buton}>
-                            <Link  >
-                              <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" >
-                                <ListItemIcon>
-                                  <Computer style={{color:"#23D9B7"}} />
-                                </ListItemIcon>
-                                <b className={classes.colorVerde}>Iniciar clase</b></Button></Link>
-                          </Box>
+                            <Box xs={12} className={classes.class_buton}>
+                              <Link  >
+                                <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" >
+                                  <ListItemIcon>
+                                    <Computer style={{ color: "#23D9B7" }} />
+                                  </ListItemIcon>
+                                  <b className={classes.colorVerde}>Iniciar clase</b></Button></Link>
+                            </Box>
 
 
-                          <Box>
-                            <Link to={{
-                              pathname: '/assistance',
-                              Activity: {
-                                activityProps: data.attributes.name
+                            <Box>
+                              <Link to={{
+                                pathname: '/assistance',
+                                Activity: {
+                                  activityProps: data.attributes.name
 
+                                }
                               }
-                            }
-                            }>
-                              <Button className={classes.style_buton} color="white">
-                                <ListItemIcon>
-                                  <List style={{color:"#23D9B7"}}/>
-                                </ListItemIcon>
-                                <b className={classes.colorVerde}>Asistencia</b></Button></Link>
-                          </Box>
-
-                        </Grid>
-                        <Link to={{
-                          pathname: '/course',
-                          Activity: {
-                            activityProps: data.attributes.name
-
-                          }
-                        }} className={classes.link_style} >
-                          <Grid container xs={20} className={classes.activity_grid, classes.inlineCourse}>
-                            <Box className={classes.coursePosition}>
-                              <h2  className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
-                              <span  className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
+                              }>
+                                <Button className={classes.style_buton} color="white">
+                                  <ListItemIcon>
+                                    <List style={{ color: "#23D9B7" }} />
+                                  </ListItemIcon>
+                                  <b className={classes.colorVerde}>Asistencia</b></Button></Link>
                             </Box>
-                            <Box className={classes.arrowPosition}>
-                              <ArrowForwardIosIcon className={classes.arrowIcon} />
-                            </Box>
+
                           </Grid>
+                          <Link to={{
+                            pathname: '/course',
+                            Activity: {
+                              activityProps: data.attributes.name
 
-                        </Link>
-                      </Box>
+                            }
+                          }} className={classes.link_style} >
+                            <Grid container xs={20} className={classes.activity_grid, classes.inlineCourse}>
+                              <Box className={classes.coursePosition}>
+                                <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
+                                <span className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
+                              </Box>
+                              <Box className={classes.arrowPosition}>
+                                <ArrowForwardIosIcon className={classes.arrowIcon} />
+                              </Box>
+                            </Grid>
 
-                    </Grid>
+                          </Link>
+                        </Box>
+
+                      </Grid>
+                    </div>
                   </div>
-                </div>
 
-              )
+                )
+              }
             }
+            )
           }
-          )
-        }
-      </Grid>
-    </div >
-  );
+        </Grid>
+      </div >
+    );
+  }
 }
 
 export default ActivityPage;

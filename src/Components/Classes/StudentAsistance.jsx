@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, makeStyles, TextField } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import { Redirect } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   true: {
     color: 'green'
@@ -16,7 +17,10 @@ const StudentAsistance = (props) => {
   const classes = useStyle();
   let assistance = [{ assist: props.assistance }];
 
+  if (sessionStorage.getItem("token") === null) {
 
+    return <Redirect to='/login' />;
+} else {
   return (
     <div className="Assistance">
 
@@ -33,23 +37,24 @@ const StudentAsistance = (props) => {
         variant="outlined"
         xs={10}
       />
-            {
-                            assistance.map((data, index) => {
-                                
-                                   
-                                      if(data.assist=='true'){
-                                        return <CheckCircleOutlineIcon className={classes.true}/>;
-                                      }else{
-                                        return <CheckCircleOutlineIcon className={classes.false}/>;
-                                      }
-                                      
-                                    
-                                
-                            })
-                        }
-      
+      {
+        assistance.map((data, index) => {
+
+
+          if (data.assist == 'true') {
+            return <CheckCircleOutlineIcon className={classes.true} />;
+          } else {
+            return <CheckCircleOutlineIcon className={classes.false} />;
+          }
+
+
+
+        })
+      }
+
     </div>
   );
+    }
 
 }
 

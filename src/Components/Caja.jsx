@@ -30,6 +30,7 @@ export const Caja = (props) => {
       classes={{
         paper: classes.drawerPaper,
       }}
+      
       anchor="left"
     >
       <div className={classes.toolbar}><Logo className="logo-desk"/></div>

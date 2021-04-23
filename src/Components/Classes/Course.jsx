@@ -78,17 +78,17 @@ const useStyles = makeStyles((theme) => ({
 export const Course = (props) => {
     const NoAuth = "Acceso no autorizado";
 
-    if (localStorage.getItem('Activity') != '' && localStorage.getItem('Activity') != { NoAuth } && localStorage.getItem('Activity') != null) {
+    if (sessionStorage.getItem('Activity') != '' && sessionStorage.getItem('Activity') != { NoAuth } && sessionStorage.getItem('Activity') != null) {
         if (props.location.Activity) {
-            localStorage.removeItem('Activity');
+            sessionStorage.removeItem('Activity');
             const prop = [{ algo: props.location.Activity }];
             let activity = prop[0].algo.activityProps;
-            localStorage.setItem('Activity', prop[0].algo.activityProps);
+            sessionStorage.setItem('Activity', prop[0].algo.activityProps);
         }
 
     } else {
 
-        localStorage.setItem('Activity', NoAuth);
+        sessionStorage.setItem('Activity', NoAuth);
     }
 
 
@@ -98,7 +98,7 @@ export const Course = (props) => {
     return (
         <div className="MuiGrid-grid-xs-12 ">
             <div className={classes.Title} >
-                <h1>{window.localStorage.getItem('Activity')}</h1>
+                <h1>{window.sessionStorage.getItem('Activity')}</h1>
                 <Button>
                     <Link to={{
                         pathname: '/newclass',

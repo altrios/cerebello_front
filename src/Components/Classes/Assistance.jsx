@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Grid, makeStyles, Box, Button, ListItemIcon, Link, List, ListItem } from '@material-ui/core';
 import { CloudQueue } from '@material-ui/icons'
 import DateFnsUtils from '@date-io/date-fns';
+import { Redirect } from "react-router-dom";
 import {
     MuiPickersUtilsProvider,
-    KeyboardDatePicker,
     DatePicker
 } from '@material-ui/pickers';
 import StudentAsistance from './StudentAsistance';
@@ -47,6 +47,10 @@ const Assistance = () => {
         setAssistance(true)
         
     };
+    if (sessionStorage.getItem("token") === null) {
+
+        return <Redirect to='/login' />;
+    }else{
     return (
         <div className="App">
             <div className={classes.content}>
@@ -112,6 +116,7 @@ const Assistance = () => {
             </div>
         </div>
     );
+}
 }
 
 export default Assistance;
