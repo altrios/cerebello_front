@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { Box, Grid, makeStyles, ListItem, Button } from "@material-ui/core";
+import React from "react";
+import { Box, Grid, makeStyles, ListItem,  Button } from "@material-ui/core";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Link } from "react-router-dom";
-import axios from 'axios';
 
 const activities = [{
-    "type": "courses",
+
     "id": "1",
     "attributes": {
         "name": "Ingles Basico A1",
         "description": "Ingles básico para principiantes",
-        "date": "Sunday 8am - 12m",
         "lenguage": "Ingles",
         "created_at": "2021-02-09T00:34:46.000000Z",
         "updated_at": "2021-02-09T00:34:46.000000Z",
@@ -18,7 +16,7 @@ const activities = [{
     }
 },
 {
-    "type": "courses",
+
     "id": "2",
     "attributes": {
         "name": "Ingles Basico A2 - Editado",
@@ -30,7 +28,7 @@ const activities = [{
     }
 },
 {
-    "type": "courses",
+
     "id": "3",
     "attributes": {
         "name": "Chino Mandarin",
@@ -41,17 +39,14 @@ const activities = [{
         "deleted_at": null
     }
 }]
-
 const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
         padding: '10px',
     },
     Title: {
-        textAlign: 'left',
-        fontSize:'1.5rem',
-        padding: '5px',
-        marginLeft: '2%',
+        textAlign: 'center',
+        padding: '10px',
         color: '#117CC3',
     },
     activity_box: {
@@ -80,44 +75,44 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
+export const Course = (props) => {
+    const NoAuth = "Acceso no autorizado";
 
+    if (localStorage.getItem('Activity') != '' && localStorage.getItem('Activity') != { NoAuth } && localStorage.getItem('Activity') != null) {
+        if (props.location.Activity) {
+            localStorage.removeItem('Activity');
+            const prop = [{ algo: props.location.Activity }];
+            let activity = prop[0].algo.activityProps;
+            localStorage.setItem('Activity', prop[0].algo.activityProps);
+        }
 
-export const Courses = (props) => {
+    } else {
 
-
-    const [courses, setCourses] = useState([]);
-    React.useEffect(() => {
-        console.log("hola")
-        obtenerDatos()
-    }, []);
-
-    const obtenerDatos = async () => {
-        const data = await fetch('http://cerebelloback.echilateral.com/api/v1/courses');
-
-        {/*const data = await fetch('http://cerebelloback.echilateral.com/api/v1/courses') */ }
-        const jsonData = await data.json();
-        let json = [{
-            data: jsonData
-        }]
-        setCourses(jsonData.data)
-        console.log(jsonData.data);
+        localStorage.setItem('Activity', NoAuth);
     }
 
 
 
+
     const classes = useStyles();
-
     return (
-        <div className="MuiGrid-grid-xs-12">
-            <div className={classes.Title} pl={20}>
-                <h3>Mis Cursos</h3>
-
+        <div className="MuiGrid-grid-xs-12 ">
+            <div className={classes.Title} >
+                <h1>{window.localStorage.getItem('Activity')}</h1>
+                <Button>
+                    <Link to={{
+                        pathname: '/newclass',
+                        
+                    }
+                    }>
+                        <h3>Crear Actividad</h3>
+                    </Link>
+                </Button>
             </div>
-
 
             <Grid container xs={12} className={classes.activity_grid}>
                 {
-                    courses.map((data, index) => {
+                    activities.map((data, index) => {
                         if (index <= 2) {
                             return (
 
@@ -126,7 +121,7 @@ export const Courses = (props) => {
 
                                         <Grid xs={10} >
                                             <Link to={{
-                                                pathname: '/course',
+                                                pathname: '/lalala',
                                                 Activity: {
                                                     activityProps: data.attributes.name
 
@@ -143,7 +138,6 @@ export const Courses = (props) => {
                                                         <Box>
                                                             <h2>{data.attributes.name}</h2>
                                                             <span>{data.attributes.description}</span>
-                                                            <span>{data.attributes.date}</span>
                                                         </Box>
                                                     </Grid>
                                                     <Grid container xs={2} className={classes.activity_grid}>
@@ -168,4 +162,4 @@ export const Courses = (props) => {
     );
 }
 
-export default Courses;
+export default Course;

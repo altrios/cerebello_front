@@ -1,7 +1,6 @@
 body {
-  position: absolute;
+  position: inherit;
   width: 100vw;
-  overflow: hidden;
 }
 .App {
   text-align: center;
@@ -11,7 +10,6 @@ body {
   justify-content: center;
   height: auto;
   width: 100%;
-  /*padding: 35px 10px 5px 10px;*/
   padding-top: 5vh;
 }
 .Assistance{
@@ -76,4 +74,7 @@ a:link, a:visited, a:active {
 header {
   position: absolute;
   z-index: 9;
+}
+.gallery-card {
+  height: 40vh !important;
 }

@@ -15,7 +15,7 @@ import Assistance from './Components/Classes/Assistance.jsx';
 import NewClass from './Components/Classes/NewClass';
 import Perfil from './Components/Perfil/Perfil';
 import Login from './Components/Login';
-import FileRegister from './FileRegister';
+//import FileRegister from './FileRegister';
 
 
 function App() {
@@ -47,10 +47,10 @@ function App() {
           </Hidden>
           <Switch>
             <Route path="/login" exact component={Login} />
-            <Route path="/fileregister" exact component={FileRegister} />
+            {/* <Route path="/fileregister" exact component={FileRegister} /> */}
             <Route path="/" exact component={Home} />
             <Route path="/activitypage" exact component={ActivityPage} />
-            <Route path="/Course" exact component={Course} />
+            <Route path="/Course" exact component={Course} />S
             <Route path="/Courses" exact component={Courses} />
             <Route path="/assistance" exact component={Assistance} />
             <Route path="/newclass" exact component={NewClass} />
