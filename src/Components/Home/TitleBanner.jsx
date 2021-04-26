@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 export default styled.div`
+  position: relative;
+  z-index: 9;
+  transform: translate(0, -125%);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 350px;
   width: 100%;
-  color: black;
-  margin: 0 10px;
+  height: 50px;
+  color: #fff;
+  margin: 0;
+  padding:0;
+  display: table;
   font-size: 4em;
 `;

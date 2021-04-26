@@ -6,6 +6,45 @@ import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 
 
+const activities = [{
+    "type": "courses",
+    "id": "1",
+    "attributes": {
+        "name": "Ingles Basico A1",
+        "description": "Ingles básico para principiantes",
+        "date": "Sunday 8am - 12m",
+        "lenguage": "Ingles",
+        "created_at": "2021-02-09T00:34:46.000000Z",
+        "updated_at": "2021-02-09T00:34:46.000000Z",
+        "deleted_at": null
+    }
+},
+{
+    "type": "courses",
+    "id": "2",
+    "attributes": {
+        "name": "Ingles Basico A2 - Editado",
+        "description": "Ingles básico para principiantes",
+        "lenguage": "Ingles",
+        "created_at": "2021-02-09T00:35:47.000000Z",
+        "updated_at": "2021-02-09T02:01:28.000000Z",
+        "deleted_at": null
+    }
+},
+{
+    "type": "courses",
+    "id": "3",
+    "attributes": {
+        "name": "Chino Mandarin",
+        "description": null,
+        "lenguage": "Chino",
+        "created_at": "2021-03-25T02:14:05.000000Z",
+        "updated_at": "2021-03-25T02:14:05.000000Z",
+        "deleted_at": null
+    }
+}]
+
+
 const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
@@ -13,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     },
     Title: {
         textAlign: 'left',
-        fontSize:'1.5rem',
+        fontSize: '1.5rem',
         padding: '5px',
         marginLeft: '2%',
         color: '#117CC3',
@@ -119,9 +158,7 @@ export const Courses = (props) => {
                                     <div className={classes.activity_block}>
                                         <div className={classes.text} >
 
-                                            <Grid xs={10}
-
-                                            >
+                                            <Grid xs={10}>
                                                 <Link to={{
                                                     pathname: '/course',
                                                     Activity: {
@@ -129,7 +166,8 @@ export const Courses = (props) => {
 
                                                     }
                                                 }
-                                                } className={classes.link_style} >
+                                                }
+                                                    className={classes.link_style} >
 
                                                     <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
                                                         boxShadow={3}
@@ -140,6 +178,7 @@ export const Courses = (props) => {
                                                             <Box>
                                                                 <h2>{data.attributes.name}</h2>
                                                                 <span>{data.attributes.description}</span>
+                                                                <span>{data.attributes.date}</span>
                                                             </Box>
                                                         </Grid>
                                                         <Grid container xs={2} className={classes.activity_grid}>
@@ -151,9 +190,9 @@ export const Courses = (props) => {
                                                     </Box>
                                                 </Link>
                                             </Grid>
+
                                         </div>
                                     </div>
-
                                 )
                             }
                         }

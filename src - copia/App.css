@@ -1,10 +1,8 @@
 body {
   position: inherit;
   width: 100vw;
-
 }
 .App {
-  position: inherit;
   text-align: center;
   font-family: sans-serif;
   display: inline-flex;

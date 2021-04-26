@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { Link, Redirect } from "react-router-dom";
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 
 
@@ -23,7 +24,28 @@ const useStyles = makeStyles((theme) => ({
 
     textfield: {
         width: '100%',
-        padding:'5px'
+        marginBottom: '10px',
+    },
+    Red: {
+        color:'red',
+    },
+    buttonSend:{
+        backgroundColor: '#117CC3',
+        border: '1px solid #117CC3',
+        color: 'white',
+        margin: 8,
+    },
+    buttonCancel:{
+        border: '1px solid #117CC3',
+        margin: 5,
+    },
+    wp: {
+        padding: '0.5vw',
+        backgroundColor:'#25D366',
+        color: 'white',
+    },
+    wpCenter: {
+        marginRight: '3px',
     }
 }))
 
@@ -59,8 +81,10 @@ function Login() {
             .then(function (response) {
                 console.log(response.data.data);
                 sessionStorage.setItem('token',response.data.data.token);
-                <Redirect push  to='/' />;
-                console.log("redirect")
+                sessionStorage.setItem('name',response.data.data.name);
+                <Redirect from="/login" to="/perfil"/>
+                window.location.reload(); 
+                
             })
             .catch(function (error) {
                 console.log(error);
@@ -78,12 +102,12 @@ function Login() {
 
 
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit) }>
                 <Grid xs={12}>
                     <Box>
                         <div align="center">
                             <h2>Iniciar Sesión</h2>
-                            <p>Si no tienes una cuenta, solicita tu registro en <b>info@lingoyesacademy.com.co</b></p>
+                            <p>Si no tienes una cuenta, solicita tu registro <Button className={styles.wp} href='https://wa.link/mh4pk9' target="blank"><WhatsAppIcon style={{fontSize:"1.5em"}} className={styles.wpCenter}/>Chat de WhatsApp</Button> </p>
                         </div>
                     </Box>
                     <Grid xs={12}>
@@ -92,12 +116,12 @@ function Login() {
                         
                         <br />
                         <TextField type="password" {...register("exampleRequired", { required: true })} label="Contraseña" className={styles.textfield} variant="outlined" autoComplete="off"/>
-                        {errors.exampleRequired && <span>Completa los campos</span>}
+                        {errors.exampleRequired && <span className={styles.Red}>*Completa los campos</span>}
                         <br />
                     </Grid>
                     <div>
-                        <Button type="submit" color="primary">Enviar</Button>
-                        <Button> Cancelar</Button>
+                        <Button type="submit" className={styles.buttonSend}>Enviar</Button>
+                        <Button className={styles.buttonCancel}> Cancelar</Button>
                     </div>
                 </Grid>
             </form>

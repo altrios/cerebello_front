@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-
+import { AccountCircle } from '@material-ui/icons'
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
 import {
   AppBar,
-  
+
   IconButton,
   Typography,
   Toolbar,
@@ -31,26 +32,26 @@ const useStyles = makeStyles((theme) => ({
     },
 
   },
-  modal:{
-    position:'absolute',
-    with:400,
+  modal: {
+    position: 'absolute',
+    with: 400,
     background: 'white',
-    border:'2px solid #000',
+    border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2,4,3),
-    top:'50%',
-    left:'50%',
+    padding: theme.spacing(2, 4, 3),
+    top: '50%',
+    left: '50%',
     transform: 'translate(-50%, -50%)'
 
-},
-textfield:{
-    width:'100%'
-}
+  },
+  textfield: {
+    width: '100%'
+  }
 }));
 
 export const Navs = (props) => {
   const classes = useStyles();
-
+  let userName = sessionStorage.getItem('name');
   return (
     <div>
       <AppBar className={classes.appBar}>
@@ -59,18 +60,21 @@ export const Navs = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="initial" className={classes.title}>
-            Bienvenido a LingoCampus
+            LingoCampus
           </Typography>
 
 
           <NavLink
-            to="/login"
+            to="/perfil"
             exact
             color="inherit"
           >
-            <Button ><b>Login</b></Button>
+            <Button ><b>{userName}</b></Button>
+            <ListItemIcon>
+              <AccountCircle />
+            </ListItemIcon>
           </NavLink>
-         
+
 
         </Toolbar>
       </AppBar>
