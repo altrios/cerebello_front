@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 export const Lists = () => {
+    if(sessionStorage.getItem('token')){
     return (
 
         <div className="container">
@@ -85,6 +86,9 @@ export const Lists = () => {
         </div>
 
     )
+}else{
+    return(<div></div>);
+}
 }
 export default Lists;
 

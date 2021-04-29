@@ -51,7 +51,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const Navs = (props) => {
   const classes = useStyles();
-  let userName = sessionStorage.getItem('name');
+  let userName='';
+  if(sessionStorage.getItem('name')){
+   userName = sessionStorage.getItem('name');
+}
   return (
     <div>
       <AppBar className={classes.appBar}>

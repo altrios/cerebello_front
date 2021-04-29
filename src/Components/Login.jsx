@@ -2,7 +2,7 @@ import { TextField, makeStyles, Grid, Box } from "@material-ui/core";
 import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import ReactTimeout from 'react-timeout'
 
@@ -28,21 +28,21 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '10px',
     },
     Red: {
-        color:'red',
+        color: 'red',
     },
-    buttonSend:{
+    buttonSend: {
         backgroundColor: '#117CC3',
         border: '1px solid #117CC3',
         color: 'white',
         margin: 8,
     },
-    buttonCancel:{
+    buttonCancel: {
         border: '1px solid #117CC3',
         margin: 5,
     },
     wp: {
         padding: '0.5vw',
-        backgroundColor:'#25D366',
+        backgroundColor: '#25D366',
         color: 'white',
     },
     wpCenter: {
@@ -62,83 +62,79 @@ function Login() {
         login();
 
     }*/
-    
-    const onSubmit = data =>{
+
+    const onSubmit = data => {
         //setUser(data)
-        
-       console.log(); 
-       var axios = require('axios');
-       
-       
-       var data = JSON.stringify({
-           "email": data.example,
-           "password": data.exampleRequired
-       });
 
-       
+        console.log();
+        var axios = require('axios');
 
-       setTimeout(5000) 
-        axios( {
-           method: 'post',
-           url: 'http://cerebelloback.echilateral.com/api/login',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           
-           data: data,
-           
-       })
-           .then(function (response) {
-               console.log(response.data.data);
-               sessionStorage.setItem('token',response.data.data.token);
-               sessionStorage.setItem('name',response.data.data.name);
-               sessionStorage.setItem('email', user.example);
-               <Redirect from="/login" to="/perfil"/>
-               window.location.reload(); 
-               
-           })
-           .catch(function (error) {
-               console.log(error);
-               
-           });
 
-    } 
-    
+        var data = JSON.stringify({
+            "email": data.example,
+            "password": data.exampleRequired
+        });
+        axios({
+            method: 'post',
+            url: 'http://cerebelloback.echilateral.com/api/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            data: data,
+
+        })
+            .then(function (response) {
+                console.log(response.data.data);
+                sessionStorage.setItem('token', response.data.data.token);
+                sessionStorage.setItem('name', response.data.data.name);
+                sessionStorage.setItem('email', data.example);
+                
+                window.location.reload();
+
+            })
+            .catch(function (error) {
+                console.log(error);
+
+            });
+
+    }
+
 
 
     if (sessionStorage.getItem("token") !== null) {
 
         return <Redirect to='/' />;
     } else {
-    return (
-        <div className={styles.modal}>
+        return (
+            <div className={styles.modal}>
 
 
 
-            <form onSubmit={handleSubmit(onSubmit) }>
-                <Grid xs={12}>
-                    <Box>
-                        <div align="center">
-                            <h2>Iniciar Sesión</h2>
-                            <p>Si no tienes una cuenta, solicita tu registro <Button className={styles.wp} href='https://wa.link/mh4pk9' target="blank"><WhatsAppIcon style={{fontSize:"1.5em"}} className={styles.wpCenter}/>Chat de WhatsApp</Button> </p>
-                        </div>
-                    </Box>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid xs={12}>
-                    
-                        <TextField type="email" {...register("example")} label="Correo" className={styles.textfield} variant="outlined" autoComplete="off"/>
-                        
-                        <br />
-                        <TextField type="password" {...register("exampleRequired", { required: true })} label="Contraseña" className={styles.textfield} variant="outlined" autoComplete="off"/>
-                        {errors.exampleRequired && <span className={styles.Red}>*Completa los campos</span>}
-                        <br />
+                        <Box>
+                            <div align="center">
+                                <h2>Iniciar Sesión</h2>
+                                <p>Si no tienes una cuenta, solicita tu registro <Button className={styles.wp} href='https://wa.link/mh4pk9' target="blank"><WhatsAppIcon style={{ fontSize: "1.5em" }} className={styles.wpCenter} />Chat de WhatsApp</Button> </p>
+                            </div>
+                        </Box>
+                        <Grid xs={12}>
+
+                            <TextField type="email" {...register("example")} label="Correo" className={styles.textfield} variant="outlined" autoComplete="off" />
+
+                            <br />
+                            <TextField type="password" {...register("exampleRequired", { required: true })} label="Contraseña" className={styles.textfield} variant="outlined" autoComplete="off" />
+                            {errors.exampleRequired && <span className={styles.Red}>*Completa los campos</span>}
+                            <br />
+                        </Grid>
+                        <div>
+                            <Button type="submit" className={styles.buttonSend}>Enviar</Button>
+                            <Button className={styles.buttonCancel}> Cancelar</Button>
+                        </div>
                     </Grid>
-                    <div>
-                        <Button type="submit" className={styles.buttonSend}>Enviar</Button>
-                        <Button className={styles.buttonCancel}> Cancelar</Button>
-                    </div>
-                </Grid>
-            </form>
-        </div>)
+                </form>
+            </div>)
     }
 }
 export default Login;
