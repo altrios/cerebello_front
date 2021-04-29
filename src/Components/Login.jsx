@@ -2,8 +2,9 @@ import { TextField, makeStyles, Grid, Box } from "@material-ui/core";
 import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
-import { Link, Redirect } from "react-router-dom";
+import {  Redirect } from "react-router-dom";
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import ReactTimeout from 'react-timeout'
 
 
 
@@ -51,46 +52,58 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
     const styles = useStyles();
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState();
+    const [email, setEmail] = useState();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = (data) => {
+    /*const onSubmit = (data) => {
+        
         setUser(data)
+        console.log(user)
         login();
 
-    }
+    }*/
     
+    const onSubmit = data =>{
+        //setUser(data)
+        
+       console.log(); 
+       var axios = require('axios');
+       
+       
+       var data = JSON.stringify({
+           "email": data.example,
+           "password": data.exampleRequired
+       });
 
-    const login = async () => {
-        var axios = require('axios');
-        console.log(user.example)
-        var data = JSON.stringify({
-            "email": user.example,
-            "password": user.exampleRequired
-        });
+       
 
-        var config = {
-            method: 'post',
-            url: 'http://cerebelloback.echilateral.com/api/login',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: data
-        };
+       setTimeout(5000) 
+        axios( {
+           method: 'post',
+           url: 'http://cerebelloback.echilateral.com/api/login',
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           
+           data: data,
+           
+       })
+           .then(function (response) {
+               console.log(response.data.data);
+               sessionStorage.setItem('token',response.data.data.token);
+               sessionStorage.setItem('name',response.data.data.name);
+               sessionStorage.setItem('email', user.example);
+               <Redirect from="/login" to="/perfil"/>
+               window.location.reload(); 
+               
+           })
+           .catch(function (error) {
+               console.log(error);
+               
+           });
 
-        axios(config)
-            .then(function (response) {
-                console.log(response.data.data);
-                sessionStorage.setItem('token',response.data.data.token);
-                sessionStorage.setItem('name',response.data.data.name);
-                <Redirect from="/login" to="/perfil"/>
-                window.location.reload(); 
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-    }
+    } 
+    
 
 
     if (sessionStorage.getItem("token") !== null) {

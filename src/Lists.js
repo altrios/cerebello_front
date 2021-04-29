@@ -63,6 +63,20 @@ export const Lists = () => {
                                 primary="Perfil" />
                         </ListItem>
                     </Link>
+                    <Link to="/logout"
+                        exact
+                    >
+                        <ListItem button>
+                            <ListItemIcon>
+                                <AccountCircle />
+                            </ListItemIcon>
+                            <ListItemText to="/logout"
+                                exact
+                                className="btn btn-dark button-menu-lateral"
+
+                                primary="Cerrar Sesión" />
+                        </ListItem>
+                    </Link>
 
                 </List>
             </div>
