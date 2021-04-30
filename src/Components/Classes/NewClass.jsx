@@ -31,7 +31,7 @@ let text = [{
 
 const NewClass = () => {
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const [selectendDate, setSelectendDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectendDate, setSelectendDate] = React.useState(null);
 
     const [endDAte, setEndDate] = useState(false);
     const handleCheck = () => {
@@ -48,10 +48,56 @@ const NewClass = () => {
     };
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [activity, setActivity] = useState([]);
+    
     const onSubmit = (data) => {
-        console.log(data);
-        setActivity(data)
-        /* login();*/
+        let endDate=data.enddate;
+   
+    if(data.noEndDate=='true'){
+        console.log("aca")
+        endDate=null;
+    }
+        console.log(endDate);
+        
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "data": {
+                "type": "activities",
+                "attributes": {
+                    "cohort_id": 1,
+                    "name": data.title,
+                    "description": data.description,
+                    "start_date": data.startdate,
+                    "end_date": endDate,
+                    "has_end": 0,
+                    "is_active": 1,
+                    "is_evaluated": 0,
+                    "state_id": 1,
+                    "createdAt": "2021-04-01T00:00:00.000000Z",
+                    "updatedAt": "2021-04-01T00:00:00.000000Z"
+                }
+            }
+        });
+        console.log(data)
+
+        var config = {
+            method: 'post',
+            url: 'http://cerebelloback.echilateral.com/api/v1/activities',
+            headers: {
+                'Accept': 'application/vnd.api+json',
+                'Content-Type': 'application/vnd.api+json',
+                'Authorization': 'Bearer '+ sessionStorage.getItem('token')
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
 
     }
 
@@ -67,7 +113,7 @@ const NewClass = () => {
                             {...register("enddate")}
                             inputVariant="outlined"
                             variant="inline"
-                            format="MM/dd/yyyy"
+                            format="yyyy-MM-dd"
                             margin="normal"
                             id="date-picker-endDate"
                             label="fecha final"
@@ -112,7 +158,7 @@ const NewClass = () => {
                             <ListItem className={classes.listStyle}>
                                 <TextField
                                     {...register("title", { required: true })}
-                                    fullWidth labelWidth={60} id="outlined-basic" variant="outlined" />                                    
+                                    fullWidth labelWidth={60} id="outlined-basic" variant="outlined" />
                             </ListItem>
                             {errors.title && <span>Completa el titulo</span>}
                             <ListItem >
@@ -139,7 +185,7 @@ const NewClass = () => {
                                         {...register("startdate", { required: true })}
                                         inputVariant="outlined"
                                         variant="inline"
-                                        format="MM/dd/yyyy"
+                                        format="yyy-MM-dd"
                                         margin="normal"
                                         id="date-picker-inline"
                                         label="fecha inicio"
@@ -151,7 +197,7 @@ const NewClass = () => {
                                     />
                                 </MuiPickersUtilsProvider>
                             </Box>
-                            
+
                             <Box className={classes.datePicker_Box}>
                                 {showendDate}
                             </Box>
@@ -167,9 +213,9 @@ const NewClass = () => {
                                 />
                             </Box>
                         </Grid>
-                        
+
                         <Grid container xs={12}>
-                        
+
                             <Button
                                 type="submit"
                             >
