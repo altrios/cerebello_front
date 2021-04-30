@@ -159,6 +159,7 @@ export const Courses = (props) => {
                 data: jsonData.data.data
             }]
             sessionStorage.setItem('courses', json[0].data);
+            console.log(json[0].data)
             setCourses(json[0].data)
 
 
@@ -201,7 +202,8 @@ export const Courses = (props) => {
                                                 <Link to={{
                                                     pathname: '/course',
                                                     Activity: {
-                                                        activityProps: data.attributes.name
+                                                        activityProps: data.attributes.name,
+                                                        activityID:data.id
 
                                                     }
                                                 }
