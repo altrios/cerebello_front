@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
     clasesName: {
         margin: 'auto',
         display: 'block',
-        marginTop:'3.3vh',
+        marginTop:'3.5vh',
         
       },
 

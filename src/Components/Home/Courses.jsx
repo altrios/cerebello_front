@@ -208,7 +208,7 @@ export const Courses = (props) => {
                                                 }
                                                     className={classes.link_style} >
 
-                                                    <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
+                                                    <Box borderRadius={12} border={0} m={2} p={2} className={classes.activity_box} className="classRoom"
                                                         boxShadow={3}
                                                         borderColor="grey.500"
                                                         width='100%'

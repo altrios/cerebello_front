@@ -12,8 +12,21 @@ const breakPoints = [
   { width: 768, itemsToShow: 1 },
   { width: 1200, itemsToShow: 1 },
 ];
-let imgUrls = [{
-  "id":"1",
+let imgUrls = [
+  {
+    "id":"1",
+    "attributes": {
+        "title":"Bienvenido a LingoCampus",
+        "url":'http://lingoyesacademy.com.co/wp-content/uploads/2021/04/bannerComunity.jpg',
+        "yopal":'Yopal',
+        "linkYopal":'https://wa.link/yjuqmh ',
+        "sogamoso":'Sogamoso',
+        "linkSogamoso":'https://wa.link/mh4pk9 ',
+    }
+  },
+  {
+  
+  "id":"2",
   "attributes": {
       "title":"Teacher a Domicilio",
       "url":'http://lingoyesacademy.com.co/wp-content/uploads/2021/04/bannerPrueba.jpg',
@@ -24,7 +37,7 @@ let imgUrls = [{
     }
   },
   {
-    "id":"2",
+    "id":"3",
     "attributes": {
         "title":"Club Conversacional",
         "url":'http://lingoyesacademy.com.co/wp-content/uploads/2021/04/bannerPrueba2.jpg',
@@ -37,8 +50,19 @@ let imgUrls = [{
   {
     "id":"3",
     "attributes": {
-        "title":"LingoCampus",
-        "url":'http://lingoyesacademy.com.co/wp-content/uploads/2021/04/bannerPrueba.jpg',
+        "title":"Intercambios",
+        "url":'http://lingoyesacademy.com.co/wp-content/uploads/2021/04/bannerItercambios.jpg',
+        "yopal":'Yopal',
+        "linkYopal":'https://wa.link/yjuqmh ',
+        "sogamoso":'Sogamoso',
+        "linkSogamoso":'https://wa.link/mh4pk9 ',
+    }
+  },
+  {
+    "id":"3",
+    "attributes": {
+        "title":"LingoYes Your Community",
+        "url":'http://lingoyesacademy.com.co/wp-content/uploads/2021/04/bannerWebCo.jpg',
         "yopal":'Yopal',
         "linkYopal":'https://wa.link/yjuqmh ',
         "sogamoso":'Sogamoso',
@@ -70,7 +94,7 @@ const useStyles = makeStyles(() => ({
     zIndex: '10',
     flexWrap: 'nowrap',
     position: 'relative',
-    transform: 'translate(30%, -950%)',
+    transform: 'translate(31.5%, -650%)',
   },
   wpCenter: {
     transform: 'translatey(8px)',
