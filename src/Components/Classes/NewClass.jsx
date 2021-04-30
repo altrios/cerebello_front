@@ -31,7 +31,7 @@ let text = [{
     title: "<h1>hola</h1>",
 }]
 
-const NewClass = () => {
+const NewClass = (props) => {
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [selectendDate, setSelectendDate] = React.useState(null);
     let history = useHistory();
@@ -41,7 +41,7 @@ const NewClass = () => {
 
 
     }
-
+console.log()
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };

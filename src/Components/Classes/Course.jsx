@@ -81,9 +81,11 @@ export const Course = (props) => {
     if (sessionStorage.getItem('Activity') != '' && sessionStorage.getItem('Activity') != { NoAuth } && sessionStorage.getItem('Activity') != null) {
         if (props.location.Activity) {
             sessionStorage.removeItem('Activity');
+            console.log(props.location.Activity.activityID)
             const prop = [{ algo: props.location.Activity }];
             let activity = prop[0].algo.activityProps;
             sessionStorage.setItem('Activity', prop[0].algo.activityProps);
+            sessionStorage.setItem('IdCourse', props.location.Activity.activityID);
         }
 
     } else {
@@ -102,6 +104,7 @@ export const Course = (props) => {
                 <Button>
                     <Link to={{
                         pathname: '/newclass',
+                        courseID: sessionStorage.getItem('IdCourse')
                         
                     }
                     }>
