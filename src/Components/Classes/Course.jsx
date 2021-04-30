@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Box, Grid, makeStyles, ListItem, Button } from "@material-ui/core";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { Link } from "react-router-dom";
+import { Transform } from "@material-ui/icons";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
     Title: {
         textAlign: 'center',
+        width: '75vw',
         padding: '10px',
         color: '#117CC3',
     },
@@ -37,7 +41,64 @@ const useStyles = makeStyles((theme) => ({
     arrowIcon: {
         height: '2em',
         fontSize: '2.5rem'
-    }
+    },
+    back: {
+        display: 'flex',
+
+    },
+    buttonback: {
+        marginTop: '6vh',
+        position: 'relative',
+        float: 'left',
+        marginLeft: '2vw'
+    },
+    margin: {
+        marginTop: '4vh'
+    },
+    createAc: {
+        position: 'relative',
+        float: 'right',
+        display: 'block',
+        transform: 'translate(7vw, -4vh)',
+        backgroundColor: '#117CC3',
+        '&:hover': {
+            background: "#0A598D",
+        }
+    },
+    arrowPosition: {
+        display: 'block',
+        position: 'relative',
+        float: 'right',
+        marginLeft: '2vw',
+        marginTop: '0.5vh',
+    },
+    textoOculto: {
+        width: '100%',
+        display: 'block',
+        paddingLeft: '0',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+
+    },
+    inlineCourse: {
+        displat: 'flex',
+        flexwrap: 'nowrap',
+        marginLeft: '1vw'
+    },
+    coursePosition: {
+        display: 'block',
+        width: '50vw',
+        height: '1vh',
+
+    },
+    clasesName: {
+        margin: 'auto',
+        display: 'block',
+        marginTop: '3.5vh',
+
+    },
+
 
 }));
 
@@ -79,8 +140,11 @@ export const Course = (props) => {
 
         axios(config)
             .then(function (response) {
-                setCoursesActivities(response.data.data);
-                console.log(JSON.stringify(response.data.data));
+                if (response.data.included[0].id == props.location.Activity.id) {
+                    setCoursesActivities(response.data.data)
+                }
+                console.log(response.data.included[0].id)
+                console.log(props.location)
             })
             .catch(function (error) {
                 console.log(error);
@@ -110,25 +174,35 @@ export const Course = (props) => {
 
     const classes = useStyles();
     return (
-        <div className="MuiGrid-grid-xs-12 ">
-            <div className={classes.Title} >
-                <h1>{window.sessionStorage.getItem('Activity')}</h1>
-                <Button>
+        <div className="MuiGrid-grid-xs-12">
+            <div className={classes.margin}>
+                <Button className={classes.buttonback}>
                     <Link to={{
-                        pathname: '/newclass',
-                        courseID: sessionStorage.getItem('IdCourse')
-
-                    }
-                    }>
-                        <h3>Crear Actividad</h3>
+                        pathname: '/activitypage'
+                    }}>
+                        <div className={classes.back}>
+                            <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Volver</h3>
+                        </div>
                     </Link>
                 </Button>
-            </div>
+                <div className={classes.Title} >
+                    <h1>{window.sessionStorage.getItem('Activity')}</h1>
+                    <Button className={classes.createAc}>
+                        <Link to={{
+                            pathname: '/newclass',
+                            courseID: sessionStorage.getItem('IdCourse')
 
-            <Grid container xs={12} className={classes.activity_grid}>
-                {
-                    course_activities.map((data, index) => {
-                        if (index <= 2) {
+                        }
+                        }>
+                            <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
+                        </Link>
+                    </Button>
+                </div>
+
+                <Grid container xs={12} className={classes.activity_grid}>
+                    {
+                        course_activities.map((data, index) => {
+
                             return (
 
                                 <div className={classes.activity_block}>
@@ -151,14 +225,13 @@ export const Course = (props) => {
                                                     borderColor="grey.500"
                                                     width='100%'
                                                 >
-                                                    <Grid container xs={9} className={classes.activity_grid}>
-                                                        <Box>
-                                                            <h2>{data.attributes.name}</h2>
-                                                            <span>{data.attributes.description}</span>
+                                                    <Grid container xs={9} className={classes.activity_grid, classes.inlineCourse}>
+                                                        <Box className={classes.coursePosition}>
+                                                            <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
                                                         </Box>
                                                     </Grid>
                                                     <Grid container xs={2} className={classes.activity_grid}>
-                                                        <Box>
+                                                        <Box className={classes.arrowPosition}>
                                                             <ArrowForwardIosIcon className={classes.arrowIcon} />
                                                         </Box>
                                                     </Grid>
@@ -171,10 +244,10 @@ export const Course = (props) => {
 
                             )
                         }
+                        )
                     }
-                    )
-                }
-            </Grid>
+                </Grid>
+            </div>
         </div >
     );
 }

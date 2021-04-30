@@ -46,7 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
   textfield: {
     width: '100%'
+  },
+  perfilIcon: {
+    position: 'relative',
+    transform: 'translateY(6px)',
+    marginLeft:'6px',
   }
+
 }));
 
 export const Navs = (props) => {
@@ -74,7 +80,7 @@ export const Navs = (props) => {
           >
             <Button ><b>{userName}</b></Button>
             <ListItemIcon>
-              <AccountCircle />
+              <AccountCircle  className={classes.perfilIcon}/>
             </ListItemIcon>
           </NavLink>
 

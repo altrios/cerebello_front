@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   },
   wpCenter: {
     marginRight: '3px',
+  },
+  modal: {
+    marginTop: '25vh',
   }
 
 }));
@@ -96,8 +99,8 @@ function Perfil() {
 
           <Grid xs={12}>
 
-
-
+            
+            <h3>¿Quieres cambiar de contraseña?</h3>
             <br />
             <TextField type="password" {...register("password", { required: true })} label="Contraseña" className={styles.textfield} variant="outlined" autoComplete="off" />
             <TextField type="password" {...register("newpassword", { required: true })} label="Nueva Contraseña" className={styles.textfield} variant="outlined" autoComplete="off" />

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   activity_block: {
     [theme.breakpoints.up('sm')]: {
-      width: '95%',
+      width: '90%',
 
     },
     [theme.breakpoints.up('xl')]: {
@@ -65,12 +65,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(1),
     },
+    "&:hover": {
+      backgroundColor: '#F2F2F2',
+      color: 'white',
+    }
   },
   arrowPosition: {
-    display: 'table',
-    position: 'fixed',
+    display: 'block',
+    position: 'relative',
     float: 'right',
-    marginLeft: '25%',
+    marginLeft: '12vw',
     marginTop: '0.4%',
   },
   textoOculto: {
@@ -81,14 +85,17 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
 
-  },
-  inlineCourse: {
-    displat: 'flex',
-    flexwrap: 'nowrap',
-  },
-  coursePosition: {
-    display: 'block',
-    height: '10vh',
+
+},
+inlineCourse: {
+  displat: 'flex',
+  flexwrap: 'nowrap',
+},
+coursePosition: {
+  display: 'block',
+  width: '11vw',
+  height: '10vh',
+
 
   },
   centerBox: {
@@ -210,7 +217,8 @@ function ActivityPage() {
                       <Link to={{
                         pathname: '/course',
                         Activity: {
-                          activityProps: data.attributes.name
+                          activityProps: data.attributes.name,
+                          id:data.id
 
                         }
                       }} className={classes.link_style} >
