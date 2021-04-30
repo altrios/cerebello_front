@@ -80,7 +80,46 @@ const useStyles = makeStyles((theme) => ({
     arrowIcon: {
         height: '2em',
         fontSize: '2.5rem'
-    }
+    },
+    arrowPosition: {
+        display: 'block',
+        position: 'relative',
+        float: 'right',
+        marginLeft: '2vw',
+        marginTop: '0.5vh',
+    },
+      textoOculto: {
+        width: '100%',
+        display: 'block',
+        paddingLeft: '0',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+    
+    },
+    inlineCourse: {
+      displat: 'flex',
+      flexwrap: 'nowrap',
+      marginLeft:'1vw'
+    },
+    coursePosition: {
+      display: 'block',
+      width: '50vw',
+      height: '1vh',
+    
+    },
+    clasesName: {
+        margin: 'auto',
+        display: 'block',
+        marginTop:'2vh',
+        
+      },
+      clasesDescription: {
+        margin: '0',
+      },
+      bold: {
+        fontWeight:'bold',
+      }
 
 }));
 
@@ -143,7 +182,7 @@ export const Courses = (props) => {
         return (
             <div className="MuiGrid-grid-xs-12 ">
                 <div className={classes.Title} >
-                    <h3>Cronograma de Actividades</h3>
+                    <h3>Mis Cursos</h3>
 
                 </div>
 
@@ -174,11 +213,11 @@ export const Courses = (props) => {
                                                         borderColor="grey.500"
                                                         width='100%'
                                                     >
-                                                        <Grid container xs={9} className={classes.activity_grid}>
-                                                            <Box>
-                                                                <h2>{data.attributes.name}</h2>
-                                                                <span>{data.attributes.description}</span>
-                                                                <span>{data.attributes.date}</span>
+                                                        <Grid container xs={9} className={classes.activity_grid,  classes.inlineCourse}>
+                                                            <Box  className={classes.coursePosition}>
+                                                                <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
+                                                                <span   className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
+                                                                <span  className={classes.textoOculto, classes.clasesDescription, classes.bold}>{data.attributes.date}</span>
                                                             </Box>
                                                         </Grid>
                                                         <Grid container xs={2} className={classes.activity_grid}>

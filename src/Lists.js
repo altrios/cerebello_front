@@ -1,5 +1,5 @@
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { AccountCircle, Computer, HomeRounded } from '@material-ui/icons'
+import { AccountCircle, Computer, HomeRounded, Close} from '@material-ui/icons'
 import React from 'react'
 import {
     NavLink,
@@ -69,7 +69,7 @@ export const Lists = () => {
                     >
                         <ListItem button>
                             <ListItemIcon>
-                                <AccountCircle />
+                                <Close />
                             </ListItemIcon>
                             <ListItemText to="/logout"
                                 exact

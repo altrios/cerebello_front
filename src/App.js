@@ -15,7 +15,7 @@ import Assistance from './Components/Classes/Assistance.jsx';
 import NewClass from './Components/Classes/NewClass';
 import Perfil from './Components/Perfil/Perfil';
 import Login from './Components/Login';
-import Logout from './Components/Logout';
+//import Logout from './Components/Logout';
 //import FileRegister from './FileRegister';
 
 
@@ -56,7 +56,7 @@ function App() {
             <Route path="/assistance" exact component={Assistance} />
             <Route path="/newclass" exact component={NewClass} />
             <Route path="/perfil" exact component={Perfil} />
-            <Route path="/logout" exact component={Logout} />
+           {/* <Route path="/logout" exact component={Logout} />*/}
           </Switch>
 
         </div>

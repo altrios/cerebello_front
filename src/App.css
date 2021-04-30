@@ -1,7 +1,7 @@
 body {
   position: inherit;
   width: 100vw;
-
+  overflow-x: hidden;
 }
 .App {
   position: inherit;
@@ -12,7 +12,9 @@ body {
   justify-content: center;
   height: auto;
   width: 100%;
-  padding-top: 5vh;
+  padding: 35px 10px 5px 10px;
+  padding-top: 7vh;
+
 }
 .Assistance{
   text-align: center;

@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
   activity_block: {
     [theme.breakpoints.up('sm')]: {
-      width: '95%',
+      width: '90%',
 
     },
     [theme.breakpoints.up('xl')]: {
@@ -169,12 +169,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(1),
     },
+    "&:hover": {
+      backgroundColor: '#F2F2F2',
+      color: 'white',
+    }
   },
   arrowPosition: {
-    display: 'table',
-    position: 'fixed',
+    display: 'block',
+    position: 'relative',
     float: 'right',
-    marginLeft: '25%',
+    marginLeft: '12vw',
     marginTop: '0.4%',
 },
   textoOculto: {
@@ -192,6 +196,7 @@ inlineCourse: {
 },
 coursePosition: {
   display: 'block',
+  width: '11vw',
   height: '10vh',
 
 },
@@ -232,7 +237,7 @@ function ActivityPage() {
 
         {
           activities.map((data, index) => {
-            if (index <= 2) {
+
               return (
 
                 <div className={classes.activity_block}>
@@ -257,7 +262,7 @@ function ActivityPage() {
                           </Box>
 
 
-                          <Box>
+                          {/* <Box>
                             <Link to={{
                               pathname: '/assistance',
                               Activity: {
@@ -271,7 +276,7 @@ function ActivityPage() {
                                   <List style={{color:"#23D9B7"}}/>
                                 </ListItemIcon>
                                 <b className={classes.colorVerde}>Asistencia</b></Button></Link>
-                          </Box>
+                          </Box> */}
 
                         </Grid>
                         <Link to={{
@@ -302,7 +307,6 @@ function ActivityPage() {
 
               )
             }
-          }
           )
         }
       </Grid>
