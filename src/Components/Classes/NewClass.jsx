@@ -1,8 +1,11 @@
 import { List, ListItem, TextField, makeStyles, Grid, Box, FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import { Redirect } from "react-router-dom";
+import { Redirect, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Home from "../Home/Home"
 import 'date-fns';
+
 import { useForm } from "react-hook-form";
 import {
     MuiPickersUtilsProvider,
@@ -30,9 +33,9 @@ let text = [{
 }]
 
 const NewClass = () => {
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(null);
     const [selectendDate, setSelectendDate] = React.useState(null);
-
+    let history = useHistory();
     const [endDAte, setEndDate] = useState(false);
     const handleCheck = () => {
         setEndDate(!endDAte)
@@ -48,16 +51,16 @@ const NewClass = () => {
     };
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [activity, setActivity] = useState([]);
-    
+
     const onSubmit = (data) => {
-        let endDate=data.enddate;
-   
-    if(data.noEndDate=='true'){
-        console.log("aca")
-        endDate=null;
-    }
+        let endDate = data.enddate;
+
+        if (data.noEndDate == 'true') {
+            console.log("aca")
+            endDate = null;
+        }
         console.log(endDate);
-        
+
         var axios = require('axios');
         var data = JSON.stringify({
             "data": {
@@ -77,7 +80,7 @@ const NewClass = () => {
                 }
             }
         });
-        console.log(data)
+        
 
         var config = {
             method: 'post',
@@ -85,14 +88,14 @@ const NewClass = () => {
             headers: {
                 'Accept': 'application/vnd.api+json',
                 'Content-Type': 'application/vnd.api+json',
-                'Authorization': 'Bearer '+ sessionStorage.getItem('token')
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             },
             data: data
         };
 
         axios(config)
             .then(function (response) {
-                console.log(JSON.stringify(response.data));
+                history.push("/");    
             })
             .catch(function (error) {
                 console.log(error);
