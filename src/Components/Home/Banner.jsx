@@ -108,7 +108,7 @@ function Banner() {
       <div className={classes.Banner}>
         <div className="App">
 
-          <Carousel breakPoints={breakPoints}>
+          <Carousel breakPoints={breakPoints} enableAutoPlay autoPlaySpeed={2500}>
 
             {
               imgUrls.map((data, index) => {

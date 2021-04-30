@@ -1,9 +1,10 @@
-import { List, ListItem, TextField, makeStyles, Grid, Box, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import { List, ListItem, TextField, makeStyles, Grid, Box, FormControlLabel, Checkbox, Button, Link } from '@material-ui/core';
 import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import 'date-fns';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import { useForm } from "react-hook-form";
 import {
@@ -23,7 +24,20 @@ const useStyles = makeStyles(() => ({
     },
     check_Box: {
         padding: '25px'
-    }
+    },
+    back: {
+        display: 'flex',
+        
+    },
+    buttonback: {
+        marginTop: '6vh',
+        position: 'relative',
+        float: 'left',
+        marginLeft: '2vw'
+    },
+    margin: {
+        marginTop: '4vh'
+    },
 
 
 }));
@@ -140,6 +154,16 @@ console.log()
         return (
             <div className="Assistance">
                 <Grid fullWidth xs={12}>
+                    <Button className={classes.buttonback}>
+                        <Link to={{
+                            pathname:'/activitypage'
+                        }}>
+                            <div className={classes.back}>
+                                <ArrowBackIosIcon style={{color:'#707070'}}/>   <h3 style={{margin: '0', color:'#707070'}}>Volver</h3>
+                            </div>
+                        </Link>
+                    </Button>
+                    <br/>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <List >
                             <ListItem >
