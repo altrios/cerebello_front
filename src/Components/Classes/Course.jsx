@@ -1,44 +1,9 @@
-import React from "react";
-import { Box, Grid, makeStyles, ListItem,  Button } from "@material-ui/core";
+import React, { useState } from "react";
+import { Box, Grid, makeStyles, ListItem, Button } from "@material-ui/core";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Link } from "react-router-dom";
 
-const activities = [{
 
-    "id": "1",
-    "attributes": {
-        "name": "Ingles Basico A1",
-        "description": "Ingles básico para principiantes",
-        "lenguage": "Ingles",
-        "created_at": "2021-02-09T00:34:46.000000Z",
-        "updated_at": "2021-02-09T00:34:46.000000Z",
-        "deleted_at": null
-    }
-},
-{
-
-    "id": "2",
-    "attributes": {
-        "name": "Ingles Basico A2 - Editado",
-        "description": "Ingles básico para principiantes",
-        "lenguage": "Ingles",
-        "created_at": "2021-02-09T00:35:47.000000Z",
-        "updated_at": "2021-02-09T02:01:28.000000Z",
-        "deleted_at": null
-    }
-},
-{
-
-    "id": "3",
-    "attributes": {
-        "name": "Chino Mandarin",
-        "description": null,
-        "lenguage": "Chino",
-        "created_at": "2021-03-25T02:14:05.000000Z",
-        "updated_at": "2021-03-25T02:14:05.000000Z",
-        "deleted_at": null
-    }
-}]
 const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
@@ -75,15 +40,62 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
+
 export const Course = (props) => {
     const NoAuth = "Acceso no autorizado";
+    const [course_activities, setCoursesActivities] = useState([])
+
+    var axios = require('axios');
+    React.useEffect(() => {
+        var data = JSON.stringify({
+            "data": {
+                "type": "activities",
+                "attributes": {
+                    "cohort_id": 1,
+                    "name": "The resistance",
+                    "description": "aaaa",
+                    "start_date": "2021-04-30",
+                    "end_date": null,
+                    "has_end": 0,
+                    "is_active": 1,
+                    "is_evaluated": 0,
+                    "state_id": 1,
+                    "createdAt": "2021-04-01T00:00:00.000000Z",
+                    "updatedAt": "2021-04-01T00:00:00.000000Z"
+                }
+            }
+        });
+
+        var config = {
+            method: 'get',
+            url: 'http://cerebelloback.echilateral.com/api/v1/activities',
+            headers: {
+                'Accept': 'application/vnd.api+json',
+                'Content-Type': 'application/vnd.api+json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                setCoursesActivities(response.data.data);
+                console.log(JSON.stringify(response.data.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+
+
+
 
     if (sessionStorage.getItem('Activity') != '' && sessionStorage.getItem('Activity') != { NoAuth } && sessionStorage.getItem('Activity') != null) {
         if (props.location.Activity) {
             sessionStorage.removeItem('Activity');
             console.log(props.location.Activity.activityID)
             const prop = [{ algo: props.location.Activity }];
-            let activity = prop[0].algo.activityProps;
+            //let activity = prop[0].algo.activityProps;
             sessionStorage.setItem('Activity', prop[0].algo.activityProps);
             sessionStorage.setItem('IdCourse', props.location.Activity.activityID);
         }
@@ -105,7 +117,7 @@ export const Course = (props) => {
                     <Link to={{
                         pathname: '/newclass',
                         courseID: sessionStorage.getItem('IdCourse')
-                        
+
                     }
                     }>
                         <h3>Crear Actividad</h3>
@@ -115,7 +127,7 @@ export const Course = (props) => {
 
             <Grid container xs={12} className={classes.activity_grid}>
                 {
-                    activities.map((data, index) => {
+                    course_activities.map((data, index) => {
                         if (index <= 2) {
                             return (
 
@@ -124,9 +136,11 @@ export const Course = (props) => {
 
                                         <Grid xs={10} >
                                             <Link to={{
-                                                pathname: '/lalala',
+                                                pathname: '/activityview',
                                                 Activity: {
-                                                    activityProps: data.attributes.name
+                                                    title: data.attributes.name,
+                                                    cohorteID: data.attributes.cohort_id,
+                                                    description: data.attributes.description
 
                                                 }
                                             }

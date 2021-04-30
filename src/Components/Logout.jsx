@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default function Logout() {
     var axios = require('axios');
@@ -20,7 +20,9 @@ export default function Logout() {
             sessionStorage.removeItem('token');
             sessionStorage.removeItem('name');
             sessionStorage.removeItem('email');
-            console.log(sessionStorage.removeItem('name'));
+            sessionStorage.removeItem('nivel');
+            sessionStorage.removetItem('title')
+            sessionStorage.removetItem('description')
             window.location.reload();
         })
         .catch(function (error) {
@@ -29,8 +31,8 @@ export default function Logout() {
 
     return (
         <div>
-              <Redirect from="/logout" to="/"/>
+            <Redirect from="/logout" to="/" />
         </div>
-        
+
     )
 }

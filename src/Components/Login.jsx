@@ -70,7 +70,7 @@ function Login() {
         var axios = require('axios');
 
 
-        var data = JSON.stringify({
+        var userData = JSON.stringify({
             "email": data.example,
             "password": data.exampleRequired
         });
@@ -81,14 +81,15 @@ function Login() {
                 'Content-Type': 'application/json'
             },
 
-            data: data,
+            data: userData,
 
         })
             .then(function (response) {
-                console.log(response.data.data);
+                console.log(data.example);
                 sessionStorage.setItem('token', response.data.data.token);
                 sessionStorage.setItem('name', response.data.data.name);
                 sessionStorage.setItem('email', data.example);
+                sessionStorage.setItem('nivel', response.data.data.nivel);
                 
                 window.location.reload();
 
@@ -103,7 +104,6 @@ function Login() {
 
 
     if (sessionStorage.getItem("token") !== null) {
-
         return <Redirect to='/' />;
     } else {
         return (

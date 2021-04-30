@@ -86,21 +86,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const Courses = (props) => {
-
-
     const [courses, setCourses] = useState([]);
     React.useEffect(() => {
-
-
         obtenerDatos()
         console.log(courses)
     }, []);
-
     const obtenerDatos = async () => {
         var axios = require('axios');
         var data = '';
-
-        console.log(sessionStorage.getItem('name'))
         var config = {
             method: 'get',
             url: 'http://cerebelloback.echilateral.com/api/v1/courses',
@@ -111,7 +104,6 @@ export const Courses = (props) => {
             },
             data: data
         };
-
         const response = await axios(config)
         try {
             //const jsonData =  response;
@@ -122,10 +114,6 @@ export const Courses = (props) => {
             sessionStorage.setItem('courses', json[0].data);
             console.log(json[0].data)
             setCourses(json[0].data)
-
-
-
-
         } catch (error) {
             console.log(error);
         };
@@ -153,7 +141,7 @@ export const Courses = (props) => {
                     {
                         courses.map((data, index) => {
 
-                            if (index < 2) {
+                            if (index < 3) {
                                 return (
 
                                     <div className={classes.activity_block}>
@@ -164,7 +152,7 @@ export const Courses = (props) => {
                                                     pathname: '/course',
                                                     Activity: {
                                                         activityProps: data.attributes.name,
-                                                        activityID:data.id
+                                                        activityID: data.id
 
                                                     }
                                                 }
