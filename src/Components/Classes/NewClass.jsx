@@ -1,9 +1,8 @@
 import { List, ListItem, TextField, makeStyles, Grid, Box, FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import { Redirect, Switch, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import Home from "../Home/Home"
 import 'date-fns';
 
 import { useForm } from "react-hook-form";
@@ -12,7 +11,7 @@ import {
     KeyboardDatePicker,
     DatePicker
 } from '@material-ui/pickers';
-import id from 'date-fns/esm/locale/id/index.js';
+
 
 const useStyles = makeStyles(() => ({
     listStyle: {
