@@ -131,29 +131,58 @@ function ActivityPage() {
   const obtenerDatos = async () => {
     var axios = require('axios');
     var data = '';
-    var config = {
-      method: 'get',
-      url: 'http://cerebelloback.echilateral.com/api/v1/courses',
-      headers: {
-        'Accept': 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-      },
-      data: data
-    };
-    const response = await axios(config)
-    try {
-      //const jsonData =  response;
-      const jsonData = response;
-      let json = [{
-        data: jsonData.data.data
-      }]
-      sessionStorage.setItem('courses', json[0].data);
-      console.log(json[0].data)
-      setCourses(json[0].data)
-    } catch (error) {
-      console.log(error);
-    };
+    if (sessionStorage.getItem('nivel') == "admin") {
+      var config = {
+          method: 'get',
+          url: 'http://cerebelloback.echilateral.com/api/v1/courses',
+          headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json',
+              'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+          },
+          data: data
+      };
+      const response = await axios(config)
+      try {
+          //const jsonData =  response;
+          const jsonData = response;
+          let json = [{
+              data: jsonData.data.data
+          }]
+          sessionStorage.setItem('courses', json[0].data);
+          console.log(json[0].data)
+          setCourses(json[0].data)
+      } catch (error) {
+          console.log(error);
+      };
+
+  } else if (sessionStorage.getItem('nivel') == "student") {
+
+      var config = {
+          method: 'get',
+          url: 'http://cerebelloback.echilateral.com/api/v1/cohorts',
+          headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json',
+              'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+          }
+      };
+
+      axios(config)
+          .then(function (response) {
+              const jsonData = response;
+              let json = [{
+                  data: jsonData.data.data
+              }]
+              sessionStorage.setItem('courses', json[0].data);
+              console.log(json[0].data)
+              setCourses(json[0].data)
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+
+  }
 
   }
 
@@ -218,9 +247,9 @@ function ActivityPage() {
                         pathname: '/course',
                         Activity: {
                           activityProps: data.attributes.name,
-                          id:data.id
+                          id: data.id
 
-                        }
+                      }
                       }} className={classes.link_style} >
                         <Grid container xs={20} className={classes.activity_grid, classes.inlineCourse}>
                           <Box className={classes.coursePosition}>

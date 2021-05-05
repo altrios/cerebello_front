@@ -17,6 +17,7 @@ import Perfil from './Components/Perfil/Perfil';
 import Login from './Components/Login';
 import Logout from './Components/Logout';
 import ActivittyView from './Components/Classes/ActivittyView'
+import jQuery from 'jquery'
 //import FileRegister from './FileRegister';
 
 

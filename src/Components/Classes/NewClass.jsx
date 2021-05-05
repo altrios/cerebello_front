@@ -35,13 +35,15 @@ const NewClass = (props) => {
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [selectendDate, setSelectendDate] = React.useState(null);
     let history = useHistory();
+    console.log(props.location)
+    let cohort=props.location.cohort_id
     const [endDAte, setEndDate] = useState(false);
     const handleCheck = () => {
         setEndDate(!endDAte)
 
 
     }
-console.log()
+
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
@@ -58,14 +60,14 @@ console.log()
             console.log("aca")
             endDate = null;
         }
-        console.log(endDate);
+        console.log(cohort);
 
         var axios = require('axios');
         var data = JSON.stringify({
             "data": {
                 "type": "activities",
                 "attributes": {
-                    "cohort_id": 1,
+                    "cohort_id": cohort,
                     "name": data.title,
                     "description": data.description,
                     "start_date": data.startdate,

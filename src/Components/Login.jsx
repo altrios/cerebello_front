@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import ReactTimeout from 'react-timeout'
+import { useHistory } from "react-router-dom";
 
 
 
@@ -54,22 +54,25 @@ function Login() {
     const styles = useStyles();
     const [user, setUser] = useState();
     const [email, setEmail] = useState();
+    let history = useHistory();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    /*const onSubmit = (data) => {
-        
-        setUser(data)
-        console.log(user)
-        login();
-
-    }*/
-
+    setTimeout(
+        function() {
+            document.getElementById('username').innerHTML ='';
+        }
+        .bind(this),
+        5
+      );
+    setTimeout(
+        function() {
+            document.getElementById('menu').style.display='none';
+        }
+        .bind(this),
+        5
+    );
+   
     const onSubmit = data => {
-        //setUser(data)
-
-        console.log();
-        var axios = require('axios');
-
-
+        var axios = require('axios');        
         var userData = JSON.stringify({
             "email": data.example,
             "password": data.exampleRequired
@@ -90,8 +93,8 @@ function Login() {
                 sessionStorage.setItem('name', response.data.data.name);
                 sessionStorage.setItem('email', data.example);
                 sessionStorage.setItem('nivel', response.data.data.nivel);
-                
-                window.location.reload();
+                document.getElementById('menu').style.display='block';
+                history.push("/");    
 
             })
             .catch(function (error) {
@@ -103,9 +106,7 @@ function Login() {
 
 
 
-    if (sessionStorage.getItem("token") !== null) {
-        return <Redirect to='/' />;
-    } else {
+        
         return (
             <div className={styles.modal}>
 
@@ -134,7 +135,8 @@ function Login() {
                         </div>
                     </Grid>
                 </form>
-            </div>)
-    }
+            </div>
+            )
+           
 }
 export default Login;

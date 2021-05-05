@@ -88,38 +88,38 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '2vw',
         marginTop: '0.5vh',
     },
-      textoOculto: {
+    textoOculto: {
         width: '100%',
         display: 'block',
         paddingLeft: '0',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-    
+
     },
     inlineCourse: {
-      displat: 'flex',
-      flexwrap: 'nowrap',
-      marginLeft:'1vw'
+        displat: 'flex',
+        flexwrap: 'nowrap',
+        marginLeft: '1vw'
     },
     coursePosition: {
-      display: 'block',
-      width: '50vw',
-      height: '1vh',
-    
+        display: 'block',
+        width: '50vw',
+        height: '1vh',
+
     },
     clasesName: {
         margin: 'auto',
         display: 'block',
-        marginTop:'2vh',
-        
-      },
-      clasesDescription: {
+        marginTop: '2vh',
+
+    },
+    clasesDescription: {
         margin: '0',
-      },
-      bold: {
-        fontWeight:'bold',
-      }
+    },
+    bold: {
+        fontWeight: 'bold',
+    }
 
 }));
 
@@ -128,34 +128,75 @@ export const Courses = (props) => {
     const [courses, setCourses] = useState([]);
     React.useEffect(() => {
         obtenerDatos()
-        console.log(courses)
+        
+        setTimeout(
+            function () {
+                if (sessionStorage.getItem('name') !== null) {
+                    document.getElementById('username').innerHTML = '<b>' + sessionStorage.getItem('name') + '</b>';
+                } else {
+                    document.getElementById('username').innerHTML = ''
+                }
+
+            }
+                .bind(this),
+            1000
+        );
     }, []);
     const obtenerDatos = async () => {
         var axios = require('axios');
         var data = '';
-        var config = {
-            method: 'get',
-            url: 'http://cerebelloback.echilateral.com/api/v1/courses',
-            headers: {
-                'Accept': 'application/vnd.api+json',
-                'Content-Type': 'application/vnd.api+json',
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-            },
-            data: data
-        };
-        const response = await axios(config)
-        try {
-            //const jsonData =  response;
-            const jsonData = response;
-            let json = [{
-                data: jsonData.data.data
-            }]
-            sessionStorage.setItem('courses', json[0].data);
-            console.log(json[0].data)
-            setCourses(json[0].data)
-        } catch (error) {
-            console.log(error);
-        };
+        if (sessionStorage.getItem('nivel') == "admin") {
+            var config = {
+                method: 'get',
+                url: 'http://cerebelloback.echilateral.com/api/v1/courses',
+                headers: {
+                    'Accept': 'application/vnd.api+json',
+                    'Content-Type': 'application/vnd.api+json',
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                },
+                data: data
+            };
+            const response = await axios(config)
+            try {
+                //const jsonData =  response;
+                const jsonData = response;
+                let json = [{
+                    data: jsonData.data.data
+                }]
+                sessionStorage.setItem('courses', json[0].data);
+                console.log(json[0].data)
+                setCourses(json[0].data)
+            } catch (error) {
+                console.log(error);
+            };
+
+        } else if (sessionStorage.getItem('nivel') == "student") {
+
+            var config = {
+                method: 'get',
+                url: 'http://cerebelloback.echilateral.com/api/v1/cohorts',
+                headers: {
+                    'Accept': 'application/vnd.api+json',
+                    'Content-Type': 'application/vnd.api+json',
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                }
+            };
+
+            axios(config)
+                .then(function (response) {
+                    const jsonData = response;
+                    let json = [{
+                        data: jsonData.data.data
+                    }]
+                    sessionStorage.setItem('courses', json[0].data);
+                    console.log(json[0].data)
+                    setCourses(json[0].data)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
 
     }
 
@@ -185,13 +226,13 @@ export const Courses = (props) => {
 
                                     <div className={classes.activity_block}>
                                         <div className={classes.text} >
-
+                                        
                                             <Grid xs={10}>
                                                 <Link to={{
                                                     pathname: '/course',
                                                     Activity: {
                                                         activityProps: data.attributes.name,
-                                                        activityID: data.id
+                                                        id: data.id
 
                                                     }
                                                 }
@@ -203,11 +244,11 @@ export const Courses = (props) => {
                                                         borderColor="grey.500"
                                                         width='100%'
                                                     >
-                                                        <Grid container xs={9} className={classes.activity_grid,  classes.inlineCourse}>
-                                                            <Box  className={classes.coursePosition}>
+                                                        <Grid container xs={9} className={classes.activity_grid, classes.inlineCourse}>
+                                                            <Box className={classes.coursePosition}>
                                                                 <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
-                                                                <span   className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
-                                                                <span  className={classes.textoOculto, classes.clasesDescription, classes.bold}>{data.attributes.date}</span>
+                                                                <span className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
+                                                                <span className={classes.textoOculto, classes.clasesDescription, classes.bold}>{data.attributes.date}</span>
                                                             </Box>
                                                         </Grid>
                                                         <Grid container xs={2} className={classes.activity_grid}>

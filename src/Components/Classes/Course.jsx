@@ -103,29 +103,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Course = (props) => {
+    const [cohort_id, setCohort_id] = useState();
     const NoAuth = "Acceso no autorizado";
     const [course_activities, setCoursesActivities] = useState([])
 
     var axios = require('axios');
     React.useEffect(() => {
-        var data = JSON.stringify({
-            "data": {
-                "type": "activities",
-                "attributes": {
-                    "cohort_id": 1,
-                    "name": "The resistance",
-                    "description": "aaaa",
-                    "start_date": "2021-04-30",
-                    "end_date": null,
-                    "has_end": 0,
-                    "is_active": 1,
-                    "is_evaluated": 0,
-                    "state_id": 1,
-                    "createdAt": "2021-04-01T00:00:00.000000Z",
-                    "updatedAt": "2021-04-01T00:00:00.000000Z"
-                }
-            }
-        });
+        var data = '';
 
         var config = {
             method: 'get',
@@ -140,11 +124,8 @@ export const Course = (props) => {
 
         axios(config)
             .then(function (response) {
-                if (response.data.included[0].id == props.location.Activity.id) {
-                    setCoursesActivities(response.data.data)
-                }
-                console.log(response.data.included[0].id)
-                console.log(props.location)
+                setCoursesActivities(response.data.data)
+                setCohort_id(props.location.Activity.id)
             })
             .catch(function (error) {
                 console.log(error);
@@ -153,11 +134,11 @@ export const Course = (props) => {
 
 
 
-
+    console.log(cohort_id)
     if (sessionStorage.getItem('Activity') != '' && sessionStorage.getItem('Activity') != { NoAuth } && sessionStorage.getItem('Activity') != null) {
         if (props.location.Activity) {
             sessionStorage.removeItem('Activity');
-            console.log(props.location.Activity.activityID)
+            
             const prop = [{ algo: props.location.Activity }];
             //let activity = prop[0].algo.activityProps;
             sessionStorage.setItem('Activity', prop[0].algo.activityProps);
@@ -169,7 +150,29 @@ export const Course = (props) => {
         sessionStorage.setItem('Activity', NoAuth);
     }
 
+    const showendButton = () => {
 
+        if (sessionStorage.getItem('nivel') == "admin"||sessionStorage.getItem('nivel') == "teacher") {
+
+            return (
+                <div >
+                   <Button className={classes.createAc}>
+                        <Link to={{
+                            pathname: '/newclass',
+                            cohort_id: props.location.Activity.id,
+
+
+                        }
+                        }>
+                            <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
+                        </Link>
+                    </Button>
+                </div>
+            )
+        } else {
+            return (<div></div>)
+        }
+    }
 
 
     const classes = useStyles();
@@ -187,62 +190,55 @@ export const Course = (props) => {
                 </Button>
                 <div className={classes.Title} >
                     <h1>{window.sessionStorage.getItem('Activity')}</h1>
-                    <Button className={classes.createAc}>
-                        <Link to={{
-                            pathname: '/newclass',
-                            courseID: sessionStorage.getItem('IdCourse')
-
-                        }
-                        }>
-                            <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
-                        </Link>
-                    </Button>
+                    {showendButton}
                 </div>
 
                 <Grid container xs={12} className={classes.activity_grid}>
                     {
                         course_activities.map((data, index) => {
 
-                            return (
 
-                                <div className={classes.activity_block}>
-                                    <div className={classes.text} >
+                            if (cohort_id == data.attributes.cohort_id) {
+                                return (
 
-                                        <Grid xs={10} >
-                                            <Link to={{
-                                                pathname: '/activityview',
-                                                Activity: {
-                                                    title: data.attributes.name,
-                                                    cohorteID: data.attributes.cohort_id,
-                                                    description: data.attributes.description
+                                    <div className={classes.activity_block}>
+                                        <div className={classes.text} >
 
+                                            <Grid xs={10} >
+                                                <Link to={{
+                                                    pathname: '/activityview',
+                                                    Activity: {
+                                                        title: data.attributes.name,
+                                                        cohorteID: data.attributes.cohort_id,
+                                                        description: data.attributes.description
+
+                                                    }
                                                 }
-                                            }
-                                            } className={classes.link_style} >
+                                                } className={classes.link_style} >
 
-                                                <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
-                                                    boxShadow={3}
-                                                    borderColor="grey.500"
-                                                    width='100%'
-                                                >
-                                                    <Grid container xs={9} className={classes.activity_grid, classes.inlineCourse}>
-                                                        <Box className={classes.coursePosition}>
-                                                            <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
-                                                        </Box>
-                                                    </Grid>
-                                                    <Grid container xs={2} className={classes.activity_grid}>
-                                                        <Box className={classes.arrowPosition}>
-                                                            <ArrowForwardIosIcon className={classes.arrowIcon} />
-                                                        </Box>
-                                                    </Grid>
+                                                    <Box borderRadius={12} border={1} m={2} p={2} className={classes.activity_box} className="classRoom"
+                                                        boxShadow={3}
+                                                        borderColor="grey.500"
+                                                        width='100%'
+                                                    >
+                                                        <Grid container xs={9} className={classes.activity_grid, classes.inlineCourse}>
+                                                            <Box className={classes.coursePosition}>
+                                                                <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid container xs={2} className={classes.activity_grid}>
+                                                            <Box className={classes.arrowPosition}>
+                                                                <ArrowForwardIosIcon className={classes.arrowIcon} />
+                                                            </Box>
+                                                        </Grid>
 
-                                                </Box>
-                                            </Link>
-                                        </Grid>
+                                                    </Box>
+                                                </Link>
+                                            </Grid>
+                                        </div>
                                     </div>
-                                </div>
-
-                            )
+                                )
+                            }
                         }
                         )
                     }
