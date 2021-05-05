@@ -50,17 +50,22 @@ const useStyles = makeStyles((theme) => ({
   perfilIcon: {
     position: 'relative',
     transform: 'translateY(6px)',
-    marginLeft:'6px',
+    marginLeft: '6px',
   }
 
 }));
 
+  
+
 export const Navs = (props) => {
   const classes = useStyles();
-  let userName='';
-  if(sessionStorage.getItem('name')){
-   userName = sessionStorage.getItem('name');
-}
+  let userName=''
+
+      if (sessionStorage.getItem('name')) {
+      userName=sessionStorage.getItem('name');
+      
+    }
+    
   return (
     <div>
       <AppBar className={classes.appBar}>
@@ -78,9 +83,9 @@ export const Navs = (props) => {
             exact
             color="inherit"
           >
-            <Button ><b>{userName}</b></Button>
+            <Button id="username" ><b>{userName}</b></Button>
             <ListItemIcon>
-              <AccountCircle  className={classes.perfilIcon}/>
+              <AccountCircle className={classes.perfilIcon} />
             </ListItemIcon>
           </NavLink>
 

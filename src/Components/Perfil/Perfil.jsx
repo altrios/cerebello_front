@@ -59,15 +59,16 @@ function Perfil() {
     var config = {
       method: 'post',
       url: 'http://cerebelloback.echilateral.com/api/change_password',
-      headers: { 
-        'Authorization': 'Bearer ' +sessionStorage.getItem('token'), 
-        'Accept': 'application/json', 
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      data : userdata
+      data: userdata
     };
-    
-    
+    sessionStorage.removetItem('title')
+    sessionStorage.removetItem('description')
+
 
     axios(config)
       .then(function (response) {
@@ -83,7 +84,7 @@ function Perfil() {
   }
 
 
- 
+
   return (
     <div className={styles.modal}>
       <form onSubmit={handleSubmit(onSubmit)} className="App">
@@ -95,7 +96,7 @@ function Perfil() {
               <p>Si no tienes una cuenta, solicita tu registro <Button className={styles.wp} href='https://wa.link/mh4pk9' target="blank"><WhatsAppIcon style={{ fontSize: "1.5em" }} className={styles.wpCenter} />Chat de WhatsApp</Button> </p>
             </div>
           </Box> */}
-          
+
           <Grid xs={12}>
 
             
