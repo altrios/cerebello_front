@@ -103,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Course = (props) => {
+    const classes = useStyles();
     const [cohort_id, setCohort_id] = useState();
     const NoAuth = "Acceso no autorizado";
     const [course_activities, setCoursesActivities] = useState([])
@@ -134,7 +135,7 @@ export const Course = (props) => {
 
 
 
-    console.log(cohort_id)
+    
     if (sessionStorage.getItem('Activity') != '' && sessionStorage.getItem('Activity') != { NoAuth } && sessionStorage.getItem('Activity') != null) {
         if (props.location.Activity) {
             sessionStorage.removeItem('Activity');
@@ -150,32 +151,26 @@ export const Course = (props) => {
         sessionStorage.setItem('Activity', NoAuth);
     }
 
-    const showendButton = () => {
+    
 
-        if (sessionStorage.getItem('nivel') == "admin"||sessionStorage.getItem('nivel') == "teacher") {
-
-            return (
-                <div >
-                   <Button className={classes.createAc}>
-                        <Link to={{
-                            pathname: '/newclass',
-                            cohort_id: props.location.Activity.id,
-
-
-                        }
-                        }>
-                            <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
-                        </Link>
-                    </Button>
-                </div>
-            )
+        if (sessionStorage.getItem('nivel') != "admin" && sessionStorage.getItem('nivel') != "teacher") {
+            console.log("hola")
+            setTimeout(
+                function() {
+                    document.getElementById('CreateClass').innerHTML =null;
+                }
+                .bind(this),
+                5
+              );
+            //document.getElementById('createClass').innerHTML ='';
         } else {
-            return (<div></div>)
+           
+            console.log("hola")
         }
-    }
+    
 
 
-    const classes = useStyles();
+    
     return (
         <div className="MuiGrid-grid-xs-12">
             <div className={classes.margin}>
@@ -190,7 +185,19 @@ export const Course = (props) => {
                 </Button>
                 <div className={classes.Title} >
                     <h1>{window.sessionStorage.getItem('Activity')}</h1>
-                    {showendButton}
+                    <div id="CreateClass">
+                    <Button className={classes.createAc}>
+                        <Link to={{
+                            pathname: '/newclass',
+                            cohort_id: props.location.Activity.id,
+
+
+                        }
+                        }>
+                            <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
+                        </Link>
+                    </Button>
+                    </div>
                 </div>
 
                 <Grid container xs={12} className={classes.activity_grid}>

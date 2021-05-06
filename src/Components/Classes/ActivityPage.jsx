@@ -156,7 +156,7 @@ function ActivityPage() {
           console.log(error);
       };
 
-  } else if (sessionStorage.getItem('nivel') == "student") {
+  } else if (sessionStorage.getItem('nivel') == "student"||sessionStorage.getItem('nivel') == "teacher") {
 
       var config = {
           method: 'get',
