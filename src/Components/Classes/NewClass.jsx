@@ -33,7 +33,8 @@ const useStyles = makeStyles(() => ({
         marginTop: '6vh',
         position: 'relative',
         float: 'left',
-        marginLeft: '2vw'
+        marginLeft: '2vw',
+        zIndex: '999',
     },
     margin: {
         marginTop: '4vh'
@@ -249,8 +250,10 @@ const NewClass = (props) => {
                             >
                                 Guardar
                         </Button>
-                            <Button
-                            >
+                            <Button>
+                                <Link to={{
+                                pathname:'/activitypage'
+                                }} />
                                 Cancelar
                         </Button>
                         </Grid>

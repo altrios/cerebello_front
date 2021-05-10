@@ -6,7 +6,6 @@ import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { Link } from "react-router-dom";
 import { Transform } from "@material-ui/icons";
 
-
 const useStyles = makeStyles((theme) => ({
     text: {
         textAlign: 'left',
@@ -15,8 +14,20 @@ const useStyles = makeStyles((theme) => ({
     Title: {
         textAlign: 'center',
         width: '75vw',
-        padding: '10px',
+        padding: '10px 0 10px 0',
         color: '#117CC3',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+          },
+        [theme.breakpoints.down('sm')]: {
+            width: '70%',
+          },
+          [theme.breakpoints.up('md')]: {
+            width: '70vw',
+          },
+          [theme.breakpoints.up('lg')]: {
+            width: '75vw',
+          }
     },
     activity_box: {
         color: 'black'
@@ -27,13 +38,20 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     activity_block: {
-        color: 'black',
-        [theme.breakpoints.up('sm')]: {
+        marginLeft:'2vw',
+        [theme.breakpoints.down('xs')]: {
             width: '100%',
-        },
-        [theme.breakpoints.up('xl')]: {
-            width: '33%'
-        },
+          },
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+          },
+          [theme.breakpoints.up('md')]: {
+            width: '45%',
+          },
+          [theme.breakpoints.up('lg')]: {
+            width: '30%',
+          }
+        
     },
     link_style: {
         color: "snow",
@@ -50,7 +68,19 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '6vh',
         position: 'relative',
         float: 'left',
-        marginLeft: '2vw'
+        marginLeft: '2vw',
+        [theme.breakpoints.down('xs')]: {
+            
+          },
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '0vh',
+          },
+          [theme.breakpoints.up('md')]: {
+            marginTop: '0vh',
+          },
+          [theme.breakpoints.up('lg')]: {
+            
+          }
     },
     margin: {
         marginTop: '4vh'
@@ -59,17 +89,30 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         float: 'right',
         display: 'block',
-        transform: 'translate(7vw, -4vh)',
         backgroundColor: '#117CC3',
+        marginLeft: '3vw',
         '&:hover': {
             background: "#0A598D",
-        }
+        },
+        [theme.breakpoints.down('xs')]: {
+            transform: 'translate(0%, 0%)',
+          },
+        [theme.breakpoints.down('sm')]: {
+            transform: 'translate(-50%, -50%)',
+            marginLeft: '0vw',
+          },
+          [theme.breakpoints.up('md')]: {
+            float: 'left',
+          },
+          [theme.breakpoints.up('lg')]: {
+            transform: 'translate(0vw, 0vh)',
+          }
     },
     arrowPosition: {
         display: 'block',
         position: 'relative',
         float: 'right',
-        marginLeft: '2vw',
+        marginLeft: '1vw',
         marginTop: '0.5vh',
     },
     textoOculto: {
@@ -98,6 +141,13 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '3.5vh',
 
     },
+    root: {
+        flexGrow: 1,
+        
+      },
+      header: {
+          display: 'flex',
+      }
 
 
 }));
@@ -172,35 +222,37 @@ export const Course = (props) => {
 
     
     return (
-        <div className="MuiGrid-grid-xs-12">
+        <div container className="MuiGrid-grid-xs-12" >
             <div className={classes.margin}>
-                <Button className={classes.buttonback}>
-                    <Link to={{
-                        pathname: '/activitypage'
-                    }}>
-                        <div className={classes.back}>
-                            <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Volver</h3>
-                        </div>
-                    </Link>
-                </Button>
-                <div className={classes.Title} >
-                    <h1>{window.sessionStorage.getItem('Activity')}</h1>
-                    <div id="CreateClass">
-                    <Button className={classes.createAc}>
+                <div className={classes.header, classes.root}>
+                    <Button className={classes.buttonback}>
                         <Link to={{
-                            pathname: '/newclass',
-                            cohort_id: props.location.Activity.id,
-
-
-                        }
-                        }>
-                            <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
+                            pathname: '/activitypage'
+                        }}>
+                            <div className={classes.back}>
+                                <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Volver</h3>
+                            </div>
                         </Link>
                     </Button>
+                    <div className={classes.Title} >
+                        <h1>{window.sessionStorage.getItem('Activity')}</h1>
+                    </div>
+                    <div id="CreateClass">
+                        <Button className={classes.createAc}>
+                            <Link to={{
+                                pathname: '/newclass',
+                                cohort_id: props.location.Activity_id,
+
+
+                            }
+                            }>
+                                <div className={classes.back}> <ControlPointIcon style={{ color: 'white' }} /> <h3 style={{ margin: '0 0 0 1vw', color: 'white' }}>Crear Actividad</h3></div>
+                            </Link>
+                        </Button>
                     </div>
                 </div>
-
-                <Grid container xs={12} className={classes.activity_grid}>
+                <div  className={classes.root}>
+                <Grid container spacing={3} className={classes.activity_grid}>
                     {
                         course_activities.map((data, index) => {
 
@@ -211,7 +263,7 @@ export const Course = (props) => {
                                     <div className={classes.activity_block}>
                                         <div className={classes.text} >
 
-                                            <Grid xs={10} >
+                                            <Grid item xs={12} sm={11} lg={10}>
                                                 <Link to={{
                                                     pathname: '/activityview',
                                                     Activity: {
@@ -250,8 +302,10 @@ export const Course = (props) => {
                         )
                     }
                 </Grid>
+                </div>
+                
             </div>
-        </div >
+        </div>
     );
 }
 

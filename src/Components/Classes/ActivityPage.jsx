@@ -207,7 +207,12 @@ function ActivityPage() {
               <div className={classes.activity_block}>
                 <div className={classes.text} >
 
-                  <Grid xs={12} className={classes.centerBox}>
+                  <Grid xs={12} className={classes.centerBox} 
+                    container
+                    direction="row"
+                    justify="space-around"
+                    alignItems="center"
+                  >
 
                     <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
                       boxShadow={3}

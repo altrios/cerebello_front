@@ -82,3 +82,9 @@ header {
 .gallery-card {
   height: 40vh !important;
 }
+@media only screen and (max-width: 600px) {
+  .App {
+    padding: 0;
+    padding-top: 7vh;
+  }
+}
