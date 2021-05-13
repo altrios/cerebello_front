@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
         width: '75vw',
         padding: '10px 0 10px 0',
         color: '#117CC3',
-        [theme.breakpoints.down('xs')]: {
-            width: '100%',
-          },
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.up('xs')]: {
             width: '70%',
+          },
+        [theme.breakpoints.up('sm')]: {
+            width: '80%',
           },
           [theme.breakpoints.up('md')]: {
             width: '70vw',
@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
     },
     activity_block: {
         marginLeft:'2vw',
-        [theme.breakpoints.down('xs')]: {
-            width: '100%',
+        [theme.breakpoints.up('xs')]: {
+            width: '85%',
           },
-        [theme.breakpoints.down('sm')]: {
-            width: '80%',
+        [theme.breakpoints.up('sm')]: {
+            width: '95%',
           },
           [theme.breakpoints.up('md')]: {
             width: '45%',
@@ -58,7 +58,10 @@ const useStyles = makeStyles((theme) => ({
     },
     arrowIcon: {
         height: '2em',
-        fontSize: '2.5rem'
+        fontSize: '2.5rem',
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '0vh',
+          },
     },
     back: {
         display: 'flex',
@@ -94,18 +97,20 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: "#0A598D",
         },
-        [theme.breakpoints.down('xs')]: {
-            transform: 'translate(0%, 0%)',
-          },
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.up('xs')]: {
             transform: 'translate(-50%, -50%)',
+            marginLeft: '0',
+          },
+        [theme.breakpoints.up('sm')]: {
+            transform: 'translate(-88%, -50%)',
             marginLeft: '0vw',
           },
           [theme.breakpoints.up('md')]: {
-            float: 'left',
+            transform: 'translate(-138%, -50%)',
+            marginLeft: '0vw',
           },
           [theme.breakpoints.up('lg')]: {
-            transform: 'translate(0vw, 0vh)',
+            transform: 'translate(-5vw, 0vh)',
           }
     },
     arrowPosition: {
@@ -139,7 +144,12 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         display: 'block',
         marginTop: '3.5vh',
-
+        [theme.breakpoints.up('sm')]: {
+            marginTop: '3vh',
+          },
+          [theme.breakpoints.up('md')]: {
+            marginTop: '2.3vh',
+          },
     },
     root: {
         flexGrow: 1,

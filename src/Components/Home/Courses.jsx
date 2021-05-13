@@ -66,13 +66,19 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     activity_block: {
-        color: 'black',
-        [theme.breakpoints.up('sm')]: {
+        marginLeft:'2vw',
+        [theme.breakpoints.down('xs')]: {
             width: '100%',
-        },
-        [theme.breakpoints.up('xl')]: {
-            width: '33%'
-        },
+          },
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+          },
+          [theme.breakpoints.up('md')]: {
+            width: '45%',
+          },
+          [theme.breakpoints.up('lg')]: {
+            width: '30%',
+          }
     },
     link_style: {
         color: "snow",
@@ -217,7 +223,7 @@ export const Courses = (props) => {
                 </div>
 
 
-                <Grid container xs={12} className={classes.activity_grid}>
+                <Grid container className={classes.activity_grid}>
                     {
                         courses.map((data, index) => {
 
@@ -227,7 +233,7 @@ export const Courses = (props) => {
                                     <div className={classes.activity_block}>
                                         <div className={classes.text} >
                                         
-                                            <Grid xs={10}>
+                                            <Grid item xs={12} sm={11} lg={10}>
                                                 <Link to={{
                                                     pathname: '/course',
                                                     Activity: {
