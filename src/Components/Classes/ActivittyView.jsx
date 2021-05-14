@@ -75,7 +75,7 @@ function ActivittyView(props) {
 
     return (
         <div className="App" container >
-            <Button className={classes.buttonback}>
+            {/* <Button className={classes.buttonback}>
                 <Link to={{
                     pathname: '/activitypage'
                 }}>
@@ -83,7 +83,7 @@ function ActivittyView(props) {
                         <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Volver</h3>
                     </div>
                 </Link>
-            </Button>
+            </Button> */}
             <Grid item xs={12} sm={11} lg={10}>
                 <Box className={classes.cajaTitle}>
                     <h1 className={classes.title}>{title}</h1>

@@ -163,7 +163,7 @@ const NewClass = (props) => {
     return (
       <div className="Assistance">
         <Grid fullWidth xs={12}>
-          <Button className={classes.buttonback}>
+          {/* <Button className={classes.buttonback}>
             <Link
               to={{
                 pathname: "/activitypage",
@@ -174,7 +174,7 @@ const NewClass = (props) => {
                 <h3 style={{ margin: "0", color: "#707070" }}>Volver</h3>
               </div>
             </Link>
-          </Button>
+          </Button> */}
           <br />
           <form onSubmit={handleSubmit(onSubmit)}>
             <List>
@@ -256,24 +256,6 @@ const NewClass = (props) => {
 
             <Grid container xs={12}>
               <Button type="submit">Guardar</Button>
-              <Link to={{
-                                pathname: '/activitypage',
-                                
-                              }
-
-                            
-                              }>
-                              <Button className={classes.style_buton} color="white">
-                                
-                                <b className={classes.colorVerde}>Cancelar</b></Button></Link>
-
-              <Link to= "/activitypage"
-                
-              >
-                <Button className={classes.buttonback}>
-                  <h3>Cancelar</h3>
-                </Button>
-              </Link>
             </Grid>
           </form>
         </Grid>
