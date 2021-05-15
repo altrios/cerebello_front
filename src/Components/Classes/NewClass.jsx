@@ -1,8 +1,11 @@
 import { List, ListItem, TextField, makeStyles, Grid, Box, FormControlLabel, Checkbox, Button } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { Link } from "react-router-dom";
+import {AppContext} from "../../Provider"
 import 'date-fns';
 
 import { useForm } from "react-hook-form";
@@ -32,6 +35,7 @@ let text = [{
 }]
 
 const NewClass = (props) => {
+    const[state, setState]= useContext(AppContext)
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [selectendDate, setSelectendDate] = React.useState(null);
     let history = useHistory();
@@ -89,7 +93,7 @@ const NewClass = (props) => {
             headers: {
                 'Accept': 'application/vnd.api+json',
                 'Content-Type': 'application/vnd.api+json',
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                'Authorization': 'Bearer ' + state.token
             },
             data: data
         };
@@ -225,10 +229,15 @@ const NewClass = (props) => {
                             >
                                 Guardar
                         </Button>
-                            <Button
-                            >
-                                Cancelar
-                        </Button>
+                        <Button className={classes.buttonback}>
+                    <Link to={{
+                        pathname: '/'
+                    }}>
+                        <div className={classes.back}>
+                            <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Cancelar</h3>
+                        </div>
+                    </Link>
+                </Button>
                         </Grid>
                     </form>
                 </Grid>

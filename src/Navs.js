@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { AccountCircle } from '@material-ui/icons'
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
+import {AppContext} from "./Provider"
 import {
   AppBar,
 
@@ -55,17 +56,24 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-  
+
 
 export const Navs = (props) => {
   const classes = useStyles();
-  let userName=''
+  const[state, setState]= useContext(AppContext)
+  let userName = ''
+  window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = "\o/";
 
-      if (sessionStorage.getItem('name')) {
-      userName=sessionStorage.getItem('name');
-      
-    }
-    
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage;                            //Webkit, Safari, Chrome
+  });
+
+  if (state.name) {
+    userName = state.name;
+
+  }
+
   return (
     <div>
       <AppBar className={classes.appBar}>

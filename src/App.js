@@ -18,6 +18,7 @@ import Login from './Components/Login';
 import Logout from './Components/Logout';
 import ActivittyView from './Components/Classes/ActivittyView'
 import jQuery from 'jquery'
+import Provider from './Provider';
 //import FileRegister from './FileRegister';
 
 
@@ -30,40 +31,41 @@ function App() {
   }
   return (
     <ThemeProvider theme={theme}>
+      <Provider>
+        <Router>
+          <div className="App">
+            <Navs accionAbrir={accionAbrir} />
+            <Hidden xsDown>
+              <Caja
+                variant="permanent"
+                open={true}
+              />
+            </Hidden>
+            <Hidden smUp>
+              <Caja
+                variant="temporary"
+                open={abrir}
+                onClose={accionAbrir}
 
-      <Router>
-        <div className="App">
-          <Navs accionAbrir={accionAbrir} />
-          <Hidden xsDown>
-            <Caja
-              variant="permanent"
-              open={true}
-            />
-          </Hidden>
-          <Hidden smUp>
-            <Caja
-              variant="temporary"
-              open={abrir}
-              onClose={accionAbrir}
+              />
+            </Hidden>
+            <Switch>
+              <Route path="/login" exact component={Login} />
+              {/* <Route path="/fileregister" exact component={FileRegister} /> */}
+              <Route path="/" exact component={Home} />
+              <Route path="/activitypage" exact component={ActivityPage} />
+              <Route path="/Course" exact component={Course} />
+              <Route path="/Courses" exact component={Courses} />
+              <Route path="/assistance" exact component={Assistance} />
+              <Route path="/newclass" exact component={NewClass} />
+              <Route path="/perfil" exact component={Perfil} />
+              <Route path="/logout" exact component={Logout} />
+              <Route path="/activityview" exact component={ActivittyView} />
+            </Switch>
 
-            />
-          </Hidden>
-          <Switch>
-            <Route path="/login" exact component={Login} />
-            {/* <Route path="/fileregister" exact component={FileRegister} /> */}
-            <Route path="/" exact component={Home} />
-            <Route path="/activitypage" exact component={ActivityPage} />
-            <Route path="/Course" exact component={Course} />
-            <Route path="/Courses" exact component={Courses} />
-            <Route path="/assistance" exact component={Assistance} />
-            <Route path="/newclass" exact component={NewClass} />
-            <Route path="/perfil" exact component={Perfil} />
-            <Route path="/logout" exact component={Logout} />
-            <Route path="/activityview" exact component={ActivittyView} />
-          </Switch>
-
-        </div>
-      </Router>
+          </div>
+        </Router>
+      </Provider>
     </ThemeProvider>
   );
 }

@@ -1,4 +1,6 @@
-import { Grid, Box, makeStyles } from '@material-ui/core'
+import { Grid, Box, makeStyles, Button } from '@material-ui/core'
+import { Link } from "react-router-dom";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import React from 'react'
 const useStyles = makeStyles((theme) => ({
     description:{
@@ -24,6 +26,15 @@ function ActivittyView(props) {
 
     return (
         <div className="App">
+            <Button className={classes.buttonback}>
+                    <Link to={{
+                        pathname: '/activitypage'
+                    }}>
+                        <div className={classes.back}>
+                            <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Volver</h3>
+                        </div>
+                    </Link>
+                </Button>
             <Grid>
                 <Box>
             <h1>{title}</h1>
