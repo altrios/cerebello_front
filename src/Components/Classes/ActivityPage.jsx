@@ -51,9 +51,18 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '3%',
     marginLeft: '3%',
     padding: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: theme.spacing(3),
+    [theme.breakpoints.up('xs')]: {
+      width:'15%',
     },
+  [theme.breakpoints.up('sm')]: {
+      marginTop: '0',
+    },
+    [theme.breakpoints.up('md')]: {
+      
+    },
+    [theme.breakpoints.up('lg')]: {
+      
+    }
   },
   style_buton: {
     left: '5px',
@@ -62,9 +71,19 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     marginLeft: '0',
     whiteSpace: 'nowrap',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: theme.spacing(1),
+    [theme.breakpoints.up('xs')]: {
+      marginTop: '70%',
     },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '70%',
+      },
+      [theme.breakpoints.up('md')]: {
+        marginTop: '5%',
+      },
+      [theme.breakpoints.up('lg')]: {
+        marginTop: '0%',
+      },
+
     "&:hover": {
       backgroundColor: '#F2F2F2',
       color: 'white',
@@ -76,6 +95,20 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     marginLeft: '12vw',
     marginTop: '0.4%',
+    [theme.breakpoints.up('xs')]: {
+      marginLeft: '15vw',
+    },
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: '4vw',
+    marginTop: '5%',
+    },
+    [theme.breakpoints.up('md')]: {
+      
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '0%',
+      marginLeft: '20vw',
+    }
   },
   textoOculto: {
     width: '100%',
@@ -84,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    
 
 
 },
@@ -95,7 +129,18 @@ coursePosition: {
   display: 'block',
   width: '11vw',
   height: '10vh',
-
+  [theme.breakpoints.up('xs')]: {
+    
+  },
+[theme.breakpoints.up('sm')]: {
+  height: '0vh',
+  },
+  [theme.breakpoints.up('md')]: {
+    
+  },
+  [theme.breakpoints.up('lg')]: {
+    
+  }
 
   },
   centerBox: {
@@ -110,7 +155,19 @@ coursePosition: {
     margin: 'auto',
     display: 'block',
     marginTop: '7%',
-
+    [theme.breakpoints.up('xs')]: {
+      fontSize:'1em',
+      marginTop: '20%',
+    },
+  [theme.breakpoints.up('sm')]: {
+    marginTop: '20%',
+    },
+    [theme.breakpoints.up('md')]: {
+      
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '10%'
+    }
   },
   clasesDescription: {
     margin: '0',
@@ -207,14 +264,19 @@ function ActivityPage() {
               <div className={classes.activity_block}>
                 <div className={classes.text} >
 
-                  <Grid xs={12} className={classes.centerBox}>
+                  <Grid xs={11}  md={12} container className={classes.centerBox} 
+                    container
+                    direction="row"
+                    justify="space-around"
+                    alignItems="center"
+                  >
 
                     <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
                       boxShadow={3}
                       borderColor="grey.500"
                       width='100%'
                     >
-                      <Grid container xs={12} className={classes.activity_grid}>
+                      <Grid container xs={10} className={classes.activity_grid}>
 
                         <Box xs={12} className={classes.class_buton}>
                           <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" href="https://us02web.zoom.us/j/7117669375?pwd=NlZ4akNzN1lXQ3hQSWk5UWkwQnF2UT09"
@@ -251,7 +313,7 @@ function ActivityPage() {
 
                       }
                       }} className={classes.link_style} >
-                        <Grid container xs={20} className={classes.activity_grid, classes.inlineCourse}>
+                        <Grid container xs={0} className={classes.activity_grid, classes.inlineCourse}>
                           <Box className={classes.coursePosition}>
                             <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
                             <span className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
