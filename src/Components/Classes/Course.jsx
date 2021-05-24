@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Grid, makeStyles, ListItem, Button } from "@material-ui/core";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Transform } from "@material-ui/icons";
+import {AppContext} from "../../Provider"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -164,6 +165,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Course = (props) => {
+    const[state, setState]= useContext(AppContext)
     const classes = useStyles();
     const [cohort_id, setCohort_id] = useState();
     const NoAuth = "Acceso no autorizado";
@@ -179,7 +181,7 @@ export const Course = (props) => {
             headers: {
                 'Accept': 'application/vnd.api+json',
                 'Content-Type': 'application/vnd.api+json',
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                'Authorization': 'Bearer ' + state.token
             },
             data: data
         };
@@ -214,7 +216,7 @@ export const Course = (props) => {
 
     
 
-        if (sessionStorage.getItem('nivel') != "admin" && sessionStorage.getItem('nivel') != "teacher") {
+        if (state.nivel != "admin" && state.nivel != "teacher") {
             console.log("hola")
             setTimeout(
                 function() {
@@ -225,8 +227,8 @@ export const Course = (props) => {
               );
             //document.getElementById('createClass').innerHTML ='';
         } else {
-           
-            console.log("hola")
+           //luego veo que le coloco aca
+            //console.log("hola")
         }
     
 
@@ -318,6 +320,7 @@ export const Course = (props) => {
             </div>
         </div>
     );
+               
 }
 
 export default Course;

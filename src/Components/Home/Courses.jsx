@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Grid, makeStyles, ListItem, Button } from "@material-ui/core";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Link, Redirect } from "react-router-dom";
 
 import axios from 'axios';
+import {AppContext} from "../../Provider"
 
 const useStyles = makeStyles((theme) => ({
     text: {
@@ -92,25 +93,38 @@ const useStyles = makeStyles((theme) => ({
 
 export const Courses = (props) => {
     const [courses, setCourses] = useState([]);
+    const[state, setState]= useContext(AppContext)
+    if (!state.token) {
+        setState({ ...state, token: sessionStorage.getItem('token') })
+        console.log("token")
+    }
+    if(!state.name){
+        setState({ ...state, name: sessionStorage.getItem('name') })
+        console.log("name")
+    }
+    if(!state.email){
+        setState({ ...state, email: sessionStorage.getItem('email') })
+        console.log("email")
+    }
+    if(!state.nivel){
+        setState({ ...state, nivel: sessionStorage.getItem('nivel') })
+        console.log("nivel")
+    }
+   /* sessionStorage.removeItem('token')
+    sessionStorage.removeItem('email')
+    sessionStorage.removeItem( 'name')
+    sessionStorage.removeItem('nivel')*/
+    console.log(state)
     React.useEffect(() => {
         obtenerDatos()
         
-        setTimeout(
-            function () {
-                if (sessionStorage.getItem('name') !== null) {
-                    document.getElementById('username').innerHTML = '<b>' + sessionStorage.getItem('name') + '</b>';
-                } else {
-                    document.getElementById('username').innerHTML = ''
-                }
-
-            }
-                .bind(this),
-            1000
-        );
+        
     }, []);
+   
     const obtenerDatos = async () => {
         var axios = require('axios');
         var data = '';
+        
         if (sessionStorage.getItem('nivel') == "admin") {
             var config = {
                 method: 'get',
@@ -118,12 +132,12 @@ export const Courses = (props) => {
                 headers: {
                     'Accept': 'application/vnd.api+json',
                     'Content-Type': 'application/vnd.api+json',
-                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                    'Authorization': 'Bearer ' + state.token
                 },
                 data: data
             };
-            const response = await axios(config)
-            try {
+            await axios(config)
+            .then(function (response) {
                 //const jsonData =  response;
                 const jsonData = response;
                 let json = [{
@@ -132,9 +146,9 @@ export const Courses = (props) => {
                 sessionStorage.setItem('courses', json[0].data);
                 console.log(json[0].data)
                 setCourses(json[0].data)
-            } catch (error) {
+            })  .catch(function (error) {
                 console.log(error);
-            };
+            });
 
         } else if (sessionStorage.getItem('nivel') == "student"||sessionStorage.getItem('nivel') == "teacher") {
 
@@ -144,11 +158,11 @@ export const Courses = (props) => {
                 headers: {
                     'Accept': 'application/vnd.api+json',
                     'Content-Type': 'application/vnd.api+json',
-                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                    'Authorization': 'Bearer ' + state.token
                 }
             };
 
-            axios(config)
+            await axios(config)
                 .then(function (response) {
                     const jsonData = response;
                     let json = [{
@@ -171,8 +185,14 @@ export const Courses = (props) => {
 
     const classes = useStyles();
     const [count, setCount] = useState(0);
-    if (sessionStorage.getItem("token") === null) {
-
+    console.log(state.nivel)
+    console.log(sessionStorage.getItem('nivel'))
+    if (state.nivel==null){
+        setState({ ...state, nivel: sessionStorage.getItem('nivel') })    
+    }
+    
+    
+    if (!state.token) {
         return <Redirect to='/login' />;
     } else {
         return (

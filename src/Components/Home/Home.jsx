@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useContext} from "react";
 import Banner from "./Banner";
 import Courses from "./Courses";
 import { makeStyles,   Grid } from "@material-ui/core";
+import {AppContext} from "../../Provider"
 
 
 
@@ -14,13 +15,14 @@ const useStyles = makeStyles(() => ({
 }));
 
 function Home() {
+  const[state, setState]= useContext(AppContext)
+  console.log(state)
   sessionStorage.removeItem('Activity');
   const classes = useStyles();
   return (
     <div className="App">
       <Grid container className={classes.Container}>
         <Grid container  xs={12}>
-
           <Banner />
         </Grid>
 

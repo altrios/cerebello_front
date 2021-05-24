@@ -1,40 +1,51 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { AppContext } from "../Provider"
 export default function Logout() {
+    const [state, setState] = useContext(AppContext)
     var axios = require('axios');
     let history = useHistory();
-    var data = JSON.stringify({});
-    console.log(sessionStorage.getItem('token'))
-    var config = {
-        method: 'post',
-        url: 'http://cerebelloback.echilateral.com/api/logout',
-        headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-            'Content-Type': 'application/json'
-        },
-        data: data
-    };
+    
+        var data = JSON.stringify({});
+console.log("aja")
+        var config = {
+            method: 'post',
+            url: 'http://cerebelloback.echilateral.com/api/logout',
+            headers: {
+                'Authorization': 'Bearer ' + state.token,
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
 
-    axios(config)
-        .then(function (response) {
-            sessionStorage.removeItem('token');
-            sessionStorage.removeItem('name');
-            sessionStorage.removeItem('email');
-            sessionStorage.removeItem('nivel');
-            sessionStorage.removetItem('title')
-            sessionStorage.removetItem('description')
-            document.getElementById('username').innerHTML=''
-            history.push("/login");  
+        axios(config)
+            .then(function (response) {
+                console.log(response)
+                sessionStorage.removeItem('token');
+                sessionStorage.removeItem('name');
+                sessionStorage.removeItem('email');
+                sessionStorage.removeItem('nivel');
+                sessionStorage.removeItem('title')
+                sessionStorage.removeItem('description')
+                setState('')
+               
+                console.log(state.token)
+               
+                history.push("/")
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
             
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+
+    
 
     return (
         <div>
-            <Redirect from="/logout" to="/" />
+
+            
         </div>
 
     )
