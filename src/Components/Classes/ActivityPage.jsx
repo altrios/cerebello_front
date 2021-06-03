@@ -323,7 +323,6 @@ function ActivityPage() {
                             <b className={classes.colorVerde}>Iniciar clase</b></Button>
                         </Box>
 
-{/*
                         <Box>
                           <Link to={{
                             pathname: '/assistance',
@@ -339,7 +338,7 @@ function ActivityPage() {
                               </ListItemIcon>
                               <b className={classes.colorVerde}>Asistencia</b></Button></Link>
                         </Box>
- */}
+
                       </Grid>
                       <Link to={{
                         pathname: '/course',

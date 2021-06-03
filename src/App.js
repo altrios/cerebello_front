@@ -15,6 +15,7 @@ import Assistance from './Components/Classes/Assistance.jsx';
 import NewClass from './Components/Classes/NewClass';
 import Perfil from './Components/Perfil/Perfil';
 import Login from './Components/Login';
+import Forgetpass from './Components/Forgetpass';
 import Logout from './Components/Logout';
 import ActivittyView from './Components/Classes/ActivittyView'
 import jQuery from 'jquery'
@@ -61,6 +62,7 @@ function App() {
               <Route path="/perfil" exact component={Perfil} />
               <Route path="/logout" exact component={Logout} />
               <Route path="/activityview" exact component={ActivittyView} />
+              <Route path="/forgetpass" exact component={Forgetpass} />
             </Switch>
 
           </div>

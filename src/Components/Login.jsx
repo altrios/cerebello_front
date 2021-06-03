@@ -2,7 +2,7 @@ import { TextField, makeStyles, Grid, Box } from "@material-ui/core";
 import React, { useState, useContext } from 'react';
 import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../Provider"
@@ -118,6 +118,9 @@ function Login() {
 
     }
 
+    const forgotpass = async data => {
+
+    }
     console.log(state.token)
 
 
@@ -146,7 +149,12 @@ function Login() {
                     </Grid>
                     <div>
                         <Button type="submit" className={styles.buttonSend}>Enviar</Button>
-                        <Button className={styles.buttonCancel}> Cancelar</Button>
+                    <Link
+                    to="/forgetpass"
+                    >
+                    <Button className={styles.buttonCancel}> ¿Olvidaste tu contraseña?</Button>
+                    </Link>
+                        
                     </div>
                 </Grid>
             </form>
