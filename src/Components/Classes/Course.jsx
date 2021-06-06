@@ -170,7 +170,7 @@ export const Course = (props) => {
     const [cohort_id, setCohort_id] = useState();
     const NoAuth = "Acceso no autorizado";
     const [course_activities, setCoursesActivities] = useState([])
-
+console.log(props.location.Activity.id)
     var axios = require('axios');
     React.useEffect(() => {
         var data = '';
@@ -254,7 +254,7 @@ export const Course = (props) => {
                         <Button className={classes.createAc}>
                             <Link to={{
                                 pathname: '/newclass',
-                                cohort_id: props.location.Activity_id,
+                                cohort_id: props.location.Activity.id,
 
 
                             }
