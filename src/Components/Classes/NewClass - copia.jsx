@@ -1,13 +1,17 @@
+import React, { useState, useContext, Component } from 'react';
 import { List, ListItem, TextField, makeStyles, Grid, Box, FormControlLabel, Checkbox, Button } from '@material-ui/core';
-import React, { useState, useContext, useRef } from 'react';
-//editor de texto
-import JoditEditor from "jodit-react";
+
 
 import DateFnsUtils from '@date-io/date-fns';
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Link } from "react-router-dom";
+
+import * as ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+
 import { AppContext } from "../../Provider"
 import 'date-fns';
 
@@ -17,6 +21,8 @@ import {
     KeyboardDatePicker,
     DatePicker
 } from '@material-ui/pickers';
+import { Col, Container, FormGroup, Input, Row } from 'reactstrap';
+import { common } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles(() => ({
@@ -38,14 +44,6 @@ let text = [{
 }]
 
 const NewClass = (props) => {
-
-    const editor = useRef(null)
-    const [content, setContent] = useState('')
-    console.log(content=='')
-    const config = {
-        readonly: false // all options from https://xdsoft.net/jodit/doc/
-    }
-
     const [state, setState] = useContext(AppContext)
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [selectendDate, setSelectendDate] = React.useState(null);
@@ -75,7 +73,7 @@ const NewClass = (props) => {
             console.log("aca")
             endDate = null;
         }
-        console.log(content);
+        console.log(cohort);
 
         var axios = require('axios');
         var data = JSON.stringify({
@@ -84,7 +82,7 @@ const NewClass = (props) => {
                 "attributes": {
                     "cohort_id": cohort,
                     "name": data.title,
-                    "description": content,
+                    "description": data.description,
                     "start_date": data.startdate,
                     "end_date": endDate,
                     "has_end": 0,
@@ -119,27 +117,7 @@ const NewClass = (props) => {
 
 
     }
-    const showContent = () => {
-        console.log(content=='')
-        if (content == '') {
-            return (
-                <div>ffref
-                    
-                        <JoditEditor
-                            ref={editor}
-                            value={content}
-                            config={config}
-                            tabIndex={1} // tabIndex of textarea
-                            onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                            onChange={newContent => { }}
-                        />
-                    
-                </div>
-            )
-        } else {
-            return (<div>asdas</div>)
-        }
-    }
+
 
     const showendDate = () => {
 
@@ -169,6 +147,53 @@ const NewClass = (props) => {
             return (<div></div>)
         }
     }
+    modules = {
+        toolbar: {
+            container: [
+                [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                [{ size: [] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{ 'list': 'ordered' },{ 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                ['link', 'image'],
+                ['clean'], ['code-block']
+            ],
+        },
+        clipboard: {
+            matchVisual: false,
+        },
+    }
+    formats=[
+        'header',
+        'font',
+        'size',
+        'bold',
+        'italic',
+        'underline',
+        'strike', 'blockquote','link', 'list','bullet','indent','image','video','code-block',
+    ]
+    onChangeArticleTitle=(value)=>{
+        this.setState(state:{
+            article:{
+                
+                title:value
+                
+            }
+        })
+    }
+    constructor = (props) => {
+
+        this.state = {
+            article: {
+                tite: '',
+                content: '',
+                createDate: new Date(),
+                featureImage: '',
+                isPublish: false,
+                lastModified: new Date(),
+                createUserID: ''
+            }
+        }
+    }
     const classes = useStyles();
     if (sessionStorage.getItem("token") === null) {
 
@@ -176,11 +201,38 @@ const NewClass = (props) => {
     } else {
         return (
             <div className="Assistance">
-
-
-
                 <Grid fullWidth xs={12}>
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <ListItem >
+                            <Container>
+                                <Row>
+                                    <Col xl={9} lg={9} md={8} sm={12} xs={12}>
+                                        <h2>nueva clase</h2>
+                                        <FormGroup>
+                                            <lable>Titulo</lable>
+                                            <Input type='text' name='clase' placeholder='' onChange={(e) => console.log('')}
+                                                value={this.state.article.title} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <ReactQuill
+                                                ref={(el) => this.quill = el}
+                                                value={this.state.article.content}
+                                                onChange={(e) => common.log('')}
+                                                theme='snow'
+                                                modules={this.modules }
+                                                formats={ this.formats}
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xl={3} lg={3} md={4} sm={12} xs={12}></Col>
+                                </Row>
+                            </Container>
+                        </ListItem>
+
+
+
                         <List >
                             <ListItem >
                                 <label><h3>Nombre de la Actividad</h3></label>
@@ -206,6 +258,7 @@ const NewClass = (props) => {
                             <ListItem >
                                 <label><h3>Descripción la Actividad</h3></label>
                             </ListItem>
+
                             <ListItem className={classes.listStyle}>
                                 <TextField
                                     {...register("description", { required: true })}
@@ -213,21 +266,10 @@ const NewClass = (props) => {
                                     labelWidth={60}
                                     id="outlined-basic"
                                     variant="outlined"
-                                    value={content}
                                     multiline
                                     rows={5} />
                             </ListItem>
-                            <ListItem className={classes.listStyle}>
-                            <JoditEditor
-                            ref={editor}
-                            value={content}
-                            config={config}
-                            tabIndex={1} // tabIndex of textarea
-                            onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                            onChange={newContent => { }}
-                        />
-                            </ListItem>
-
+                            {errors.description && <span>Completa la Descripción</span>}
                         </List>
                         {errors.startdate && <span>Coloca una fecha de inicio</span>}
                         <Grid container xs={12}>
@@ -269,7 +311,11 @@ const NewClass = (props) => {
 
                         <Grid container xs={12}>
 
-                            <Button type="submit" onClick={showContent} >Guardar</Button>
+                            <Button
+                                type="submit"
+                            >
+                                Guardar
+                        </Button>
                             <Button className={classes.buttonback}>
                                 <Link to={{
                                     pathname: '/'

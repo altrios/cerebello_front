@@ -90,7 +90,8 @@ function ActivittyView(props) {
                 </Box>
                 <Box className={classes.cajaDes}>
                     <div className={classes.cajaMargen}>
-                        <span className={classes.description}>{description}</span>
+                        
+                         <div dangerouslySetInnerHTML={{__html: description}} />
                     </div>
                 {/*dangerouslySetInnerHTML={{__html:  */}
                 </Box>
