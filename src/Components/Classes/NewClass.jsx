@@ -22,6 +22,13 @@ import {
 const useStyles = makeStyles(() => ({
     listStyle: {
         marginTop: '-20px',
+        width: '80%',
+        display:'none'
+        
+    },
+    
+    title: {
+        marginTop: '-20px',
         width: '80%'
     },
     datePicker_Box: {
@@ -33,9 +40,7 @@ const useStyles = makeStyles(() => ({
 
 
 }));
-let text = [{
-    title: "<h1>hola</h1>",
-}]
+
 
 const NewClass = (props) => {
 
@@ -70,7 +75,7 @@ const NewClass = (props) => {
 
     const onSubmit = (data) => {
         let endDate = data.enddate;
-
+console.log("submit")
         if (data.noEndDate == 'true') {
             console.log("aca")
             endDate = null;
@@ -119,27 +124,7 @@ const NewClass = (props) => {
 
 
     }
-    const showContent = () => {
-        console.log(content=='')
-        if (content == '') {
-            return (
-                <div>ffref
-                    
-                        <JoditEditor
-                            ref={editor}
-                            value={content}
-                            config={config}
-                            tabIndex={1} // tabIndex of textarea
-                            onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                            onChange={newContent => { }}
-                        />
-                    
-                </div>
-            )
-        } else {
-            return (<div>asdas</div>)
-        }
-    }
+
 
     const showendDate = () => {
 
@@ -155,6 +140,7 @@ const NewClass = (props) => {
                             format="yyyy-MM-dd"
                             margin="normal"
                             id="date-picker-endDate"
+                            autoOk="true"
                             label="fecha final"
                             value={selectendDate}
                             onChange={handleEndDateChange}
@@ -185,30 +171,20 @@ const NewClass = (props) => {
                             <ListItem >
                                 <label><h3>Nombre de la Actividad</h3></label>
 
-                                {
-                                    text.map((data, index) => {
-                                        return (
-                                            <div>
-                                                {/** <div dangerouslySetInnerHTML={{__html: data.title}} />*/}
-
-                                            </div>
-                                        );
-                                    }
-                                    )
-                                }
                             </ListItem>
-                            <ListItem className={classes.listStyle}>
+                            <ListItem className={classes.title}>
                                 <TextField
                                     {...register("title", { required: true })}
                                     fullWidth labelWidth={60} id="outlined-basic" variant="outlined" />
                             </ListItem>
                             {errors.title && <span>Completa el titulo</span>}
+                            
                             <ListItem >
                                 <label><h3>Descripción la Actividad</h3></label>
                             </ListItem>
                             <ListItem className={classes.listStyle}>
                                 <TextField
-                                    {...register("description", { required: true })}
+                                    {...register("description")}
                                     fullWidth
                                     labelWidth={60}
                                     id="outlined-basic"
@@ -217,17 +193,19 @@ const NewClass = (props) => {
                                     multiline
                                     rows={5} />
                             </ListItem>
-                            <ListItem className={classes.listStyle}>
+                            
+                            <ListItem className={classes.title}>
                             <JoditEditor
                             ref={editor}
-                            value={content}
+                            value={''}
                             config={config}
                             tabIndex={1} // tabIndex of textarea
                             onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
                             onChange={newContent => { }}
                         />
+                        
                             </ListItem>
-
+                            {errors.description && <span>Completa el description</span>}
                         </List>
                         {errors.startdate && <span>Coloca una fecha de inicio</span>}
                         <Grid container xs={12}>
@@ -242,6 +220,7 @@ const NewClass = (props) => {
                                         margin="normal"
                                         id="date-picker-inline"
                                         label="fecha inicio"
+                                        autoOk="true"
                                         value={selectedDate}
                                         onChange={handleDateChange}
                                         KeyboardButtonProps={{
@@ -269,7 +248,7 @@ const NewClass = (props) => {
 
                         <Grid container xs={12}>
 
-                            <Button type="submit" onClick={showContent} >Guardar</Button>
+                            <Button type="submit" >Guardar</Button>
                             <Button className={classes.buttonback}>
                                 <Link to={{
                                     pathname: '/'
