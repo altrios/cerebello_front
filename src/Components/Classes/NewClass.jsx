@@ -23,13 +23,6 @@ const useStyles = makeStyles(() => ({
     listStyle: {
         marginTop: '-20px',
         width: '80%',
-        display:'none'
-        
-    },
-    
-    title: {
-        marginTop: '-20px',
-        width: '80%'
     },
     datePicker_Box: {
         padding: '5px'
@@ -182,17 +175,6 @@ console.log("submit")
                             <ListItem >
                                 <label><h3>Descripción la Actividad</h3></label>
                             </ListItem>
-                            <ListItem className={classes.listStyle}>
-                                <TextField
-                                    {...register("description")}
-                                    fullWidth
-                                    labelWidth={60}
-                                    id="outlined-basic"
-                                    variant="outlined"
-                                    value={content}
-                                    multiline
-                                    rows={5} />
-                            </ListItem>
                             
                             <ListItem className={classes.title}>
                             <JoditEditor
@@ -207,7 +189,6 @@ console.log("submit")
                             </ListItem>
                             {errors.description && <span>Completa el description</span>}
                         </List>
-                        {errors.startdate && <span>Coloca una fecha de inicio</span>}
                         <Grid container xs={12}>
                             <Box className={classes.datePicker_Box}>
 
