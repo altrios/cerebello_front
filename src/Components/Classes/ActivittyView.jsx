@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: '#23d9b7',
+        textAlign: 'center',
     },
     cajaDes: {
         width: '100%',
-        textAlign: 'center',
     },
     cajaMargen: {
         width: '90%',
