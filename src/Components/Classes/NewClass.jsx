@@ -23,12 +23,44 @@ const useStyles = makeStyles(() => ({
     listStyle: {
         marginTop: '-20px',
         width: '80%',
+        display:'none'
+        
+    },   
+    title: {
+        marginTop: '-20px',
+        width: '80%'
     },
     datePicker_Box: {
         padding: '5px'
     },
     check_Box: {
         padding: '25px'
+    },
+    bGuardar: {
+        backgroundColor: '#117CC3',
+        color: 'white',
+        marginRight: '3%',
+        "&:hover": {
+            backgroundColor: '#0B5C91',
+            color: 'white',
+          }
+    },
+    buttonback: {
+        border:'solid 2px #A7A7A7',
+    },
+    botones: {
+        marginTop: '4%',
+    },
+    error: {
+        color: 'red',
+        float:'left',
+        marginLeft:'1%'
+    },
+    errorMargin: {
+        color: 'red',
+        paddingTop: '0%',
+        float: 'left'
+
     }
 
 
@@ -170,7 +202,7 @@ console.log("submit")
                                     {...register("title", { required: true })}
                                     fullWidth labelWidth={60} id="outlined-basic" variant="outlined" />
                             </ListItem>
-                            {errors.title && <span>Completa el titulo</span>}
+                            {errors.title && <span className={classes.error}>*Completa el título</span>}
                             
                             <ListItem >
                                 <label><h3>Descripción la Actividad</h3></label>
@@ -187,7 +219,7 @@ console.log("submit")
                         />
                         
                             </ListItem>
-                            {errors.description && <span>Completa el description</span>}
+                            {errors.editor && <span>*Completa el description</span>}
                         </List>
                         <Grid container xs={12}>
                             <Box className={classes.datePicker_Box}>
@@ -226,16 +258,16 @@ console.log("submit")
                                 />
                             </Box>
                         </Grid>
+                        {errors.startdate && <span className={classes.errorMargin}>*Coloca una fecha de inicio</span>}
+                        <Grid container xs={12} className={classes.botones}>
 
-                        <Grid container xs={12}>
-
-                            <Button type="submit" >Guardar</Button>
+                            <Button type="submit" className={classes.bGuardar}>Guardar</Button>
                             <Button className={classes.buttonback}>
                                 <Link to={{
                                     pathname: '/'
                                 }}>
                                     <div className={classes.back}>
-                                        <ArrowBackIosIcon style={{ color: '#707070' }} />   <h3 style={{ margin: '0', color: '#707070' }}>Cancelar</h3>
+                                        <h4 style={{ margin: '0', color: '#707070' }}>Cancelar</h4>
                                     </div>
                                 </Link>
                             </Button>
