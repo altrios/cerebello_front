@@ -282,7 +282,9 @@ console.log(props.location.Activity.id)
                                                     Activity: {
                                                         title: data.attributes.name,
                                                         cohorteID: data.attributes.cohort_id,
-                                                        description: data.attributes.description
+                                                        description: data.attributes.description,
+                                                        cohort_id: props.location.Activity.id,
+                                                        data:data
 
                                                     }
                                                 }
