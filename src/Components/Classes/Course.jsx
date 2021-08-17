@@ -170,7 +170,7 @@ export const Course = (props) => {
     const [cohort_id, setCohort_id] = useState();
     const NoAuth = "Acceso no autorizado";
     const [course_activities, setCoursesActivities] = useState([])
-console.log(props.location.Activity.id)
+
     var axios = require('axios');
     React.useEffect(() => {
         var data = '';

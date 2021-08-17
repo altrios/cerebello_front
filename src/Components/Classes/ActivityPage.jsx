@@ -54,16 +54,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '3%',
     padding: 'auto',
     [theme.breakpoints.up('xs')]: {
-      width:'15%',
+      width: '15%',
     },
-  [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('sm')]: {
       marginTop: '0',
     },
     [theme.breakpoints.up('md')]: {
-      
+
     },
     [theme.breakpoints.up('lg')]: {
-      
+
     }
   },
   style_buton: {
@@ -78,13 +78,13 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: '70%',
-      },
-      [theme.breakpoints.up('md')]: {
-        marginTop: '5%',
-      },
-      [theme.breakpoints.up('lg')]: {
-        marginTop: '0%',
-      },
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: '5%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '0%',
+    },
 
     "&:hover": {
       backgroundColor: '#F2F2F2',
@@ -100,12 +100,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('xs')]: {
       marginLeft: '15vw',
     },
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: '4vw',
-    marginTop: '5%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '4vw',
+      marginTop: '5%',
     },
     [theme.breakpoints.up('md')]: {
-      
+
     },
     [theme.breakpoints.up('lg')]: {
       marginTop: '0%',
@@ -119,30 +119,30 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    
 
 
-},
-inlineCourse: {
-  displat: 'flex',
-  flexwrap: 'nowrap',
-},
-coursePosition: {
-  display: 'block',
-  width: '11vw',
-  height: '10vh',
-  [theme.breakpoints.up('xs')]: {
-    
+
   },
-[theme.breakpoints.up('sm')]: {
-  height: '0vh',
+  inlineCourse: {
+    displat: 'flex',
+    flexwrap: 'nowrap',
   },
-  [theme.breakpoints.up('md')]: {
-    
-  },
-  [theme.breakpoints.up('lg')]: {
-    
-  }
+  coursePosition: {
+    display: 'block',
+    width: '11vw',
+    height: '10vh',
+    [theme.breakpoints.up('xs')]: {
+
+    },
+    [theme.breakpoints.up('sm')]: {
+      height: '0vh',
+    },
+    [theme.breakpoints.up('md')]: {
+
+    },
+    [theme.breakpoints.up('lg')]: {
+
+    }
 
   },
   centerBox: {
@@ -158,14 +158,14 @@ coursePosition: {
     display: 'block',
     marginTop: '7%',
     [theme.breakpoints.up('xs')]: {
-      fontSize:'1em',
+      fontSize: '1em',
       marginTop: '20%',
     },
-  [theme.breakpoints.up('sm')]: {
-    marginTop: '20%',
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '20%',
     },
     [theme.breakpoints.up('md')]: {
-      
+
     },
     [theme.breakpoints.up('lg')]: {
       marginTop: '10%'
@@ -184,22 +184,22 @@ coursePosition: {
     marginLeft: '2vw',
     zIndex: '999',
     [theme.breakpoints.down('xs')]: {
-        
-      },
+
+    },
     [theme.breakpoints.down('sm')]: {
-        marginTop: '0vh',
-      },
-      [theme.breakpoints.up('md')]: {
-        marginTop: '0vh',
-      },
-      [theme.breakpoints.up('lg')]: {
-        
-      }
-},
-back: {
+      marginTop: '0vh',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: '0vh',
+    },
+    [theme.breakpoints.up('lg')]: {
+
+    }
+  },
+  back: {
     display: 'flex',
 
-},
+  },
 }));
 
 function ActivityPage() {
@@ -269,6 +269,9 @@ function ActivityPage() {
 
 
 
+
+
+
   const classes = useStyles();
   if (!state.token) {
     return <Redirect to='/login' />;
@@ -294,78 +297,82 @@ function ActivityPage() {
 
           {
             courses.map((data, index) => {
-
+              
               return (
 
                 <div className={classes.activity_block}>
-                <div className={classes.text} >
+                  <div className={classes.text} >
 
-                  <Grid xs={11}  md={12} container className={classes.centerBox} 
-                    container
-                    direction="row"
-                    justify="space-around"
-                    alignItems="center"
-                  >
-
-                    <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
-                      boxShadow={3}
-                      borderColor="grey.500"
-                      width='100%'
+                    <Grid xs={11} md={12} container className={classes.centerBox}
+                      container
+                      direction="row"
+                      justify="space-around"
+                      alignItems="center"
                     >
-                      <Grid container xs={10} className={classes.activity_grid}>
 
-                        <Box xs={12} className={classes.class_buton}>
-                          <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" href="https://us02web.zoom.us/j/7117669375?pwd=NlZ4akNzN1lXQ3hQSWk5UWkwQnF2UT09"
-                            target="blank">
-                            <ListItemIcon>
-                              <Computer style={{ color: "#23D9B7" }} />
-                            </ListItemIcon>
-                            <b className={classes.colorVerde}>Iniciar clase</b></Button>
-                        </Box>
+                      <Box borderRadius={20} border={0} mb={2} p={0} className={classes.activity_box} className="classRoom"
+                        boxShadow={3}
+                        borderColor="grey.500"
+                        width='100%'
+                      >
+                        <Grid container xs={10} className={classes.activity_grid}>
 
-                        {/* <Box>
-                          <Link to={{
-                            pathname: '/assistance',
-                            Activity: {
-                              activityProps: data.attributes.name
-
-                            }
-                          }
-                          }>
-                            <Button className={classes.style_buton} color="white">
+                          <Box xs={12} className={classes.class_buton}>
+                            <Button xs={11} className="classRoomButon" className={classes.style_buton} color="white" href="https://us02web.zoom.us/j/7117669375?pwd=NlZ4akNzN1lXQ3hQSWk5UWkwQnF2UT09"
+                              target="blank">
                               <ListItemIcon>
-                                <List style={{ color: "#23D9B7" }} />
+                                <Computer style={{ color: "#23D9B7" }} />
                               </ListItemIcon>
-                              <b className={classes.colorVerde}>Asistencia</b></Button></Link>
-                        </Box> */}
-
-                      </Grid>
-                      <Link to={{
-                        pathname: '/course',
-                        Activity: {
-                          activityProps: data.attributes.name,
-                          id: data.id
-
-                      }
-                      }} className={classes.link_style} >
-                        <Grid container xs={0} className={classes.activity_grid, classes.inlineCourse}>
-                          <Box className={classes.coursePosition}>
-                            <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
-                            <span className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
-                            <br />
-                            <span className={classes.textoOculto, classes.clasesDescription, classes.bold}>{data.attributes.date}</span>
+                              <b className={classes.colorVerde}>Iniciar clase</b></Button>
                           </Box>
-                          <Box className={classes.arrowPosition}>
-                            <ArrowForwardIosIcon className={classes.arrowIcon} />
-                          </Box>
+
+                          {<Box>
+                            <Link to={{
+                              pathname: '/assistance',
+                              Activity: {
+                                activityProps: data.attributes.name,
+                                cohorteID: data.id
+                              }
+                            }
+                            }>
+                              <Button className={classes.style_buton} color="white">
+                                <ListItemIcon>
+                                  <List style={{ color: "#23D9B7" }} />
+                                </ListItemIcon>
+                                <b className={classes.colorVerde}>Asistencia</b></Button></Link>
+                          </Box>}
+
                         </Grid>
+                        <Link to={{
+                          pathname: '/course',
+                          Activity: {
+                            activityProps: data.attributes.name,
+                            title: data.attributes.name,
+                            cohorteID: data.attributes.cohort_id,
+                            description: data.attributes.description,
 
-                      </Link>
-                    </Box>
+                            id: data.id
 
-                  </Grid>
+                          }
+                        }} className={classes.link_style} >
+                          <Grid container xs={0} className={classes.activity_grid, classes.inlineCourse}>
+                            <Box className={classes.coursePosition}>
+                              <h2 className={classes.textoOculto, classes.clasesName}>{data.attributes.name}</h2>
+                              <span className={classes.textoOculto, classes.clasesDescription}>{data.attributes.description}</span>
+                              <br />
+                              <span className={classes.textoOculto, classes.clasesDescription, classes.bold}>{data.attributes.date}</span>
+                            </Box>
+                            <Box className={classes.arrowPosition}>
+                              <ArrowForwardIosIcon className={classes.arrowIcon} />
+                            </Box>
+                          </Grid>
+
+                        </Link>
+                      </Box>
+
+                    </Grid>
+                  </div>
                 </div>
-              </div>
 
               )
 
