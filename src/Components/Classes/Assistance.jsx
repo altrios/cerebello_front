@@ -167,13 +167,14 @@ let name ='';
                                 console.log(new Date(data.attributes.createdAt).getDate())
                                 console.log(new Date(data.attributes.createdAt).getMonth()+1)
                                 console.log(new Date(data.attributes.createdAt).getFullYear())*/
-                                //console.log(data)
+                               // console.log(data)
+                                //console.log(props.location.Activity.cohorteID)
                                 //console.log(props.location)
                                   //console.log(new Date(data.attributes.createdAt).getDay()+1+'/'+new Date(data.attributes.createdAt).getMonth()+1+'/'+new Date(data.attributes.createdAt).getYear()+1)
                                if((new Date(selectedDate).getDate()==new Date(data.attributes.createdAt).getDate())
                                &&(new Date(selectedDate).getMonth()+1==new Date(data.attributes.createdAt).getMonth()+1)
                                &&(new Date(selectedDate).getFullYear()==new Date(data.attributes.createdAt).getFullYear())
-                               &&data.attributes.activity_id==props.location.Activity.cohorteID){
+                               ){
                                 var axios = require('axios');
 
                                 var config = {
