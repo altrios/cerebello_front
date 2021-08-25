@@ -128,6 +128,7 @@ function ActivittyView(props) {
     //asistencias
 
     const asistio = (studentDataID) => {
+        document.getElementById(studentDataID).style.display = 'none';
         var axios = require('axios');
 console.log(studentDataID)
         var config = {
@@ -146,6 +147,7 @@ console.log(studentDataID)
           console.log(response.data.data.relationships.teacher.data.id);
         })
         .catch(function (error) {
+            
           console.log(error);
         });
         
@@ -184,6 +186,7 @@ console.log(studentDataID)
             })
             .catch(function (error) {
                 console.log(data)
+                document.getElementById(studentDataID).style.display = 'block';
                 console.log(error);
             });
 
@@ -265,7 +268,7 @@ console.log(studentDataID)
                                             <Box>
                                                 <span>{datas.attributes.user_name}</span><Button
                                                     onClick={()=>asistio(datas.id)}
-                                                    
+                                                    id={datas.id}
                                                 >
                                                     Asistió
                                                 </Button >
