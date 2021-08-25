@@ -42,7 +42,7 @@ let userAsistance = [{
 }
 ]
 const Assistance = (props) => {
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18').getDate());
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2021-08-18'));
     const [students, setSutents] = useState([])
     
     const [stdent, setStdent] = useState([])
